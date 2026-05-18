@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   icons: { shortcut: "/img/favicon.png" },
 };
 
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,

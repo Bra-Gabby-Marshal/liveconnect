@@ -784,6 +784,446 @@ ul.nav > li > a.active{
 }  
 
 /* ==========================================================================
+   Live Connect — Section overrides & new components
+   ========================================================================== */
+
+/* Shared eyebrow + section lead */
+.lc-eyebrow{
+    color: var(--lc-royal);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+.lc-section-lead{
+    color: #cfd6e1;
+    max-width: 720px;
+    margin: 0 auto 0;
+    font-size: 15px;
+}
+.section-heading.text-center .lc-section-lead{
+    margin-left: auto;
+    margin-right: auto;
+}
+.mt-30{ margin-top: 30px; }
+.mb-40{ margin-bottom: 40px; }
+.mb-50{ margin-bottom: 50px; }
+
+/* Hero — gradient overlay + LIVE accent + dual CTA */
+.hero-section{
+    background-color: var(--lc-navy);
+    position: relative;
+    overflow: hidden;
+}
+.hero-section::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(1,23,63,0.92) 0%,
+            rgba(1,48,121,0.82) 45%,
+            rgba(2,105,187,0.55) 100%);
+    z-index: 1;
+}
+.hero-section::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(2,105,187,0.35), transparent 55%),
+        radial-gradient(circle at 15% 80%, rgba(1,48,121,0.45), transparent 55%);
+    z-index: 1;
+    pointer-events: none;
+}
+.hero-section > .container,
+.hero-section > .down-arrow{
+    position: relative;
+    z-index: 2;
+}
+.hero-content h1{
+    font-size: 72px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+.hero-content h5{
+    color: #b9d0ea;
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.hero-content p{
+    color: #e6ecf4;
+    max-width: 640px;
+    margin: 0 auto 38px;
+    font-size: 16px;
+}
+.lc-live{
+    color: #FF0000;
+    position: relative;
+    display: inline-block;
+    padding: 0 4px;
+}
+.lc-live::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 3px;
+    background: #FF0000;
+    border-radius: 2px;
+    opacity: 0.85;
+}
+.hero-cta{
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.default-btn--ghost{
+    background-color: transparent;
+    border: 2px solid #fff;
+    line-height: 41px;
+}
+.default-btn--ghost:before{
+    background: #fff;
+}
+.default-btn--ghost:hover{
+    color: var(--lc-navy);
+}
+
+/* Services grid (9 cards) */
+.lc-services-section{
+    background: linear-gradient(180deg, var(--lc-navy) 0%, var(--lc-dark-blue) 100%);
+    position: relative;
+}
+.lc-services-grid{
+    margin: 0 -12px;
+}
+.lc-services-grid > [class*='col-']{
+    padding: 12px;
+    display: flex;
+}
+.lc-service-card{
+    background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 34px 26px;
+    width: 100%;
+    transition: transform 0.35s ease, box-shadow 0.35s ease,
+                border-color 0.35s ease, background 0.35s ease;
+}
+.lc-service-card:hover{
+    transform: translateY(-6px);
+    border-color: rgba(2,105,187,0.55);
+    box-shadow: 0 24px 50px -20px rgba(2,105,187,0.55);
+    background: linear-gradient(160deg, rgba(2,105,187,0.18), rgba(1,48,121,0.05));
+}
+.lc-service-icon{
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--lc-royal), var(--lc-dark-blue));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 24px -10px rgba(2,105,187,0.7);
+}
+.lc-service-icon i{
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+}
+.lc-service-card h3{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.lc-service-card p{
+    color: #bcc6d4;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* About — feature list */
+.lc-feature-list{
+    margin: 18px 0 28px;
+}
+.lc-feature-list li{
+    color: #d6dde7;
+    font-size: 14px;
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+.lc-feature-list li i{
+    color: var(--lc-royal);
+    margin-top: 4px;
+}
+
+/* Social proof / platforms */
+.lc-platforms-section{
+    background: var(--lc-dark-blue);
+    position: relative;
+}
+.lc-platforms-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 10px;
+}
+.lc-platforms-list li{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.lc-platforms-list li:hover{
+    transform: translateY(-4px);
+    color: #b9d0ea;
+}
+.lc-platforms-list li i{
+    font-size: 44px;
+    color: #fff;
+}
+.lc-platform-svg{
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+.lc-platform-svg svg{
+    width: 100%;
+    height: 100%;
+}
+.lc-platform-label{
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Contact section — info column */
+.lc-contact-info-col{
+    padding-left: 15px;
+}
+.lc-contact-list{
+    margin-top: 10px;
+}
+.lc-contact-list li{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+.lc-contact-list li:last-child{
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.lc-contact-icon{
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--lc-royal), var(--lc-dark-blue));
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.lc-contact-icon i{ font-size: 18px; }
+.lc-contact-label{
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    color: var(--lc-royal);
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.lc-contact-value{
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.lc-contact-value:hover{ color: var(--lc-royal); }
+
+.lc-whatsapp-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 4px;
+}
+.lc-whatsapp-btn:hover{
+    background: #1eb858;
+    color: #fff;
+}
+
+/* Contact form */
+.lc-contact-form .form-control{
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 10px 16px;
+    height: 48px;
+    color: #fff;
+}
+.lc-contact-form .form-control:focus{
+    border-color: var(--lc-royal);
+    background: rgba(2,105,187,0.08);
+}
+.lc-contact-form .form-control.message{
+    height: 140px;
+    padding-top: 14px;
+}
+.lc-contact-form input[type="date"].form-control{
+    color-scheme: dark;
+}
+.lc-contact-form .submit-button{
+    border-radius: 30px;
+    padding: 0 32px;
+}
+
+/* WhatsApp floating button */
+.lc-whatsapp-float{
+    position: fixed;
+    right: 22px;
+    bottom: 78px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+    z-index: 998;
+    animation: lc-pulse 2.4s infinite;
+}
+.lc-whatsapp-float:hover{
+    color: #fff;
+    transform: scale(1.05);
+}
+@keyframes lc-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.55); }
+    70%  { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* TikTok SVG sizing in hero/footer social row */
+.social-link li a.lc-tiktok-link{
+    display: inline-flex;
+    align-items: center;
+    color: #bbb;
+}
+.social-link li a.lc-tiktok-link svg{ width: 18px; height: 18px; }
+.social-link li a.lc-tiktok-link:hover{ color: #fff; }
+
+/* Footer (extended) */
+.lc-footer{
+    background-color: var(--lc-dark-blue);
+    color: #cfd6e1;
+    padding: 70px 0 0;
+}
+.lc-footer-grid{
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: flex-start;
+}
+.lc-footer-grid h4{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+.lc-footer-brand img{
+    max-height: 44px;
+    margin-bottom: 16px;
+}
+.lc-footer-brand p{
+    color: #b8c2d4;
+    font-size: 14px;
+    max-width: 360px;
+    margin-bottom: 18px;
+}
+.lc-footer-brand .social-link li{ margin: 0 12px 0 0; }
+.lc-footer-links ul li,
+.lc-footer-contact ul li{
+    padding: 5px 0;
+    font-size: 14px;
+}
+.lc-footer-links ul li a,
+.lc-footer-contact ul li a{
+    color: #cfd6e1;
+}
+.lc-footer-links ul li a:hover,
+.lc-footer-contact ul li a:hover{
+    color: #fff;
+}
+.lc-footer-contact ul li i{
+    color: var(--lc-royal);
+    width: 18px;
+    margin-right: 4px;
+}
+.lc-footer-bottom{
+    padding: 22px 0;
+    text-align: center;
+}
+.lc-footer-bottom p{
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #b8c2d4;
+}
+
+/* Responsive tweaks for new sections */
+@media (max-width: 991px){
+    .hero-content h1{ font-size: 52px; }
+    .lc-contact-info-col{ margin-bottom: 40px; text-align: left; }
+    .contact-wrap{ text-align: left; }
+    .lc-footer-brand{ margin-bottom: 30px; }
+    .lc-footer-links{ margin-bottom: 30px; }
+}
+@media (max-width: 767px){
+    .hero-content h1{ font-size: 38px!important; }
+    .hero-content h5{ font-size: 11px; letter-spacing: 3px; }
+    .hero-cta{ gap: 10px; }
+    .lc-service-card{ padding: 26px 22px; }
+    .lc-platforms-list{ gap: 26px; }
+    .lc-platforms-list li i{ font-size: 34px; }
+    .lc-platform-svg{ width: 34px; height: 34px; }
+    .lc-whatsapp-float{ width: 50px; height: 50px; font-size: 22px; right: 16px; bottom: 70px; }
+}
+
+/* ==========================================================================
    Scroll To Top
    ========================================================================== */
 #scroll-to-top{

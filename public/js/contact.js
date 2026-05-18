@@ -30,6 +30,8 @@ $(function() {
 			$('#name').val('');
 			$('#email').val('');
 			$('#message').val('');
+			$('#event_type').val('');
+			$('#event_date').val('');
 		})
 		.fail(function(data) {
 			// Make sure that the formMessages div has the 'error' class.

@@ -97,7 +97,12 @@ export default function Home() {
         <div className="container">
           <nav className="navbar">
             <a href="#home" className="navbar-brand" data-scroll>
-              <img src="/img/logo.png" alt="Live Connect" />
+              <img
+                src="/img/logo.png"
+                alt="Live Connect"
+                width={112}
+                height={51}
+              />
             </a>
             <div className="d-flex menu-wrap">
               <div id="navmenu" className="mainmenu">

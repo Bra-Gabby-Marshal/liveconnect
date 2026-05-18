@@ -1,0 +1,113 @@
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
+
+function stripTags(input: string): string {
+  return input.replace(/<\/?[^>]+>/g, "");
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  let name = "";
+  let email = "";
+  let message = "";
+
+  if (contentType.includes("application/x-www-form-urlencoded")) {
+    const body = await request.text();
+    const params = new URLSearchParams(body);
+    name = params.get("name") ?? "";
+    email = params.get("email") ?? "";
+    message = params.get("message") ?? "";
+  } else if (contentType.includes("multipart/form-data")) {
+    const form = await request.formData();
+    name = String(form.get("name") ?? "");
+    email = String(form.get("email") ?? "");
+    message = String(form.get("message") ?? "");
+  } else if (contentType.includes("application/json")) {
+    const data = (await request.json()) as Record<string, unknown>;
+    name = String(data.name ?? "");
+    email = String(data.email ?? "");
+    message = String(data.message ?? "");
+  } else {
+    return new NextResponse(
+      "There was a problem with your submission, please try again.",
+      { status: 415 },
+    );
+  }
+
+  name = stripTags(name).replace(/[\r\n]+/g, " ").trim();
+  email = email.trim();
+  message = message.trim();
+
+  if (!name || !message || !isValidEmail(email)) {
+    return new NextResponse(
+      "Oops! There was a problem with your submission. Please complete the form and try again.",
+      { status: 400 },
+    );
+  }
+
+  const {
+    SMTP_HOST,
+    SMTP_PORT,
+    SMTP_SECURE,
+    SMTP_USER,
+    SMTP_PASS,
+    MAIL_FROM,
+    MAIL_TO,
+  } = process.env;
+
+  if (!SMTP_HOST || !MAIL_TO) {
+    return new NextResponse(
+      "Oops! Something went wrong and we couldn't send your message.",
+      { status: 500 },
+    );
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT ? Number(SMTP_PORT) : 587,
+    secure: SMTP_SECURE === "true",
+    auth:
+      SMTP_USER && SMTP_PASS
+        ? { user: SMTP_USER, pass: SMTP_PASS }
+        : undefined,
+  });
+
+  const subject = `Message from ${name}`;
+  const text =
+    `Name: ${name}\n` +
+    `Email: ${email}\n\n` +
+    `Subject: ${subject}\n\n` +
+    `Message: ${message}\n`;
+
+  try {
+    await transporter.sendMail({
+      from: MAIL_FROM ?? `${name} <${email}>`,
+      to: MAIL_TO,
+      replyTo: email,
+      subject,
+      text,
+    });
+  } catch {
+    return new NextResponse(
+      "Oops! Something went wrong and we couldn't send your message.",
+      { status: 500 },
+    );
+  }
+
+  return new NextResponse("Thank You! Your message has been sent.", {
+    status: 200,
+  });
+}
+
+export function GET() {
+  return new NextResponse(
+    "There was a problem with your submission, please try again.",
+    { status: 403 },
+  );
+}

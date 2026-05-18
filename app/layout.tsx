@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Live Connect | Show Your Work",
-  description: "Live Connect portfolio template",
-  authors: [{ name: "ThemeEaster" }],
+  title: "Live Connect | Professional Live Streaming & Event Production",
+  description:
+    "Live Connect delivers professional multi-camera live streaming for weddings, funerals, conferences, concerts, crusades, and more — broadcast to every major platform.",
+  authors: [{ name: "Live Connect" }],
   icons: { shortcut: "/img/favicon.png" },
 };
 

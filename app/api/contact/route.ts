@@ -16,6 +16,8 @@ export async function POST(request: Request) {
   let name = "";
   let email = "";
   let message = "";
+  let eventType = "";
+  let eventDate = "";
 
   if (contentType.includes("application/x-www-form-urlencoded")) {
     const body = await request.text();
@@ -23,16 +25,22 @@ export async function POST(request: Request) {
     name = params.get("name") ?? "";
     email = params.get("email") ?? "";
     message = params.get("message") ?? "";
+    eventType = params.get("event_type") ?? "";
+    eventDate = params.get("event_date") ?? "";
   } else if (contentType.includes("multipart/form-data")) {
     const form = await request.formData();
     name = String(form.get("name") ?? "");
     email = String(form.get("email") ?? "");
     message = String(form.get("message") ?? "");
+    eventType = String(form.get("event_type") ?? "");
+    eventDate = String(form.get("event_date") ?? "");
   } else if (contentType.includes("application/json")) {
     const data = (await request.json()) as Record<string, unknown>;
     name = String(data.name ?? "");
     email = String(data.email ?? "");
     message = String(data.message ?? "");
+    eventType = String(data.event_type ?? "");
+    eventDate = String(data.event_date ?? "");
   } else {
     return new NextResponse(
       "There was a problem with your submission, please try again.",
@@ -43,6 +51,8 @@ export async function POST(request: Request) {
   name = stripTags(name).replace(/[\r\n]+/g, " ").trim();
   email = email.trim();
   message = message.trim();
+  eventType = stripTags(eventType).replace(/[\r\n]+/g, " ").trim();
+  eventDate = stripTags(eventDate).replace(/[\r\n]+/g, " ").trim();
 
   if (!name || !message || !isValidEmail(email)) {
     return new NextResponse(
@@ -78,12 +88,15 @@ export async function POST(request: Request) {
         : undefined,
   });
 
-  const subject = `Message from ${name}`;
+  const subject = eventType
+    ? `New booking enquiry: ${eventType} — ${name}`
+    : `New booking enquiry from ${name}`;
   const text =
     `Name: ${name}\n` +
-    `Email: ${email}\n\n` +
-    `Subject: ${subject}\n\n` +
-    `Message: ${message}\n`;
+    `Email: ${email}\n` +
+    `Event type: ${eventType || "(not provided)"}\n` +
+    `Event date: ${eventDate || "(not provided)"}\n\n` +
+    `Message:\n${message}\n`;
 
   try {
     await transporter.sendMail({

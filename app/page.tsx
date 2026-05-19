@@ -100,8 +100,9 @@ export default function Home() {
               <img
                 src="/img/logo.png"
                 alt="Live Connect"
-                width={112}
-                height={51}
+                width={100}
+                height={80}
+                
               />
             </a>
             <div className="d-flex menu-wrap">
@@ -484,12 +485,12 @@ export default function Home() {
               </p>
               <ul className="social-link">
                 <li>
-                  <a href="#" aria-label="YouTube">
+                  <a href="https://www.youtube.com/@LiveConnectStudios" aria-label="YouTube">
                     <i className="fa fa-youtube-play"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#" aria-label="Facebook">
+                  <a href="https://facebook.com/profile.php?id=61573432752859" aria-label="Facebook">
                     <i className="fa fa-facebook"></i>
                   </a>
                 </li>
@@ -499,7 +500,7 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" aria-label="TikTok" className="lc-tiktok-link">
+                  <a href="https://www.tiktok.com/@live.connect5?_r=1&_t=ZS-96UEAvCAWBR" aria-label="TikTok" className="lc-tiktok-link">
                     <TikTokIcon />
                   </a>
                 </li>

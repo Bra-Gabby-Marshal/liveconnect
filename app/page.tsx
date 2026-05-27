@@ -100,8 +100,8 @@ export default function Home() {
               <img
                 src="/img/logo.png"
                 alt="Live Connect"
-                width={100}
-                height={80}
+                width={112}
+                height={90}
                 
               />
             </a>

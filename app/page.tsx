@@ -269,7 +269,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-md-6 d-none d-md-block">
-              <img src="/img/pics/about.jpeg" alt="Live Connect crew" />
+              <img src="/img/pics/about.jpg" alt="Live Connect crew" />
             </div>
           </div>
         </div>

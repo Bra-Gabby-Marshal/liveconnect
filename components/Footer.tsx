@@ -78,7 +78,7 @@ export default function Footer() {
         <div className="lc-footer-bottom">
           <p>
             &copy; {new Date().getFullYear()} Live Connect. All rights
-            reserved.
+            reserved. <span className="mock-hide">Designed by Sodey Haidor Gabriel</span>
           </p>
         </div>
       </div>

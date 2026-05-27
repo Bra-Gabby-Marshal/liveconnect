@@ -47,12 +47,12 @@ const services = [
 ];
 
 const portfolioImages = [
-  "prtf-1.jpg",
-  "prtf-2.jpg",
-  "prtf-3.gif",
-  "prtf-4.jpg",
-  "prtf-5.jpg",
-  "prtf-6.jpg",
+  "prof-1.jpg",
+  "prof-2.jpg",
+  "prof-3.jpg",
+  "prof-4.jpg",
+  "prof-5.jpg",
+  "prof-6.jpg",
 ];
 
 const platforms = [
@@ -297,10 +297,10 @@ export default function Home() {
                   <div className="col-lg-4 col-sm-6" key={src}>
                     <div className="portfolio-box">
                       <div className="portfolio-thumb">
-                        <img src={`/img/${src}`} alt="Production still" />
+                        <img src={`/img/pics/${src}`} alt="Production still" />
                       </div>
                       <a
-                        href={`/img/${src}`}
+                        href={`/img/pics/${src}`}
                         className="hover img-popup"
                         data-gall="galleryimg"
                       >

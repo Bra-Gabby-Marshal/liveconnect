@@ -102,7 +102,6 @@ export default function Home() {
                 alt="Live Connect"
                 width={112}
                 height={90}
-                
               />
             </a>
             <div className="d-flex menu-wrap">
@@ -210,7 +209,8 @@ export default function Home() {
             <h2>Services we live-stream</h2>
             <p className="lc-section-lead">
               Every event is different. Our crew, gear, and workflow adapt to
-              the moment — from intimate ceremonies to stadium-scale productions.
+              the moment — from intimate ceremonies to stadium-scale
+              productions.
             </p>
           </div>
           <div className="row lc-services-grid">
@@ -278,19 +278,6 @@ export default function Home() {
       <section id="works" className="portfolio-section bg-dark">
         <div className="container-fluid">
           <div className="row portfolio-wrap d-flex align-items-center">
-            <div className="col-md-4 xs-padding">
-              <div className="section-heading pdl-80">
-                <h5 className="lc-eyebrow">Recent productions</h5>
-                <h2 className="mb-20">Behind the lens</h2>
-                <p className="mb-20">
-                  A glimpse at our control rooms, camera setups, and live stages
-                  from recent broadcasts.
-                </p>
-                <a href="#contact" data-scroll className="default-btn">
-                  Start a Project
-                </a>
-              </div>
-            </div>
             <div className="col-md-8">
               <div className="row portfolio-items">
                 {portfolioImages.map((src) => (
@@ -305,13 +292,26 @@ export default function Home() {
                         data-gall="galleryimg"
                       >
                         <div>
-                            <img src={`/img/pics/${src}`} alt="Open" />
+                          <img src={`/img/pics/${src}`} alt="Open" />
                           {/* <img src="/img/zoom.png" alt="Open" /> */}
                         </div>
                       </a>
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+            <div className="col-md-4 xs-padding">
+              <div className="section-heading pdl-80">
+                <h5 className="lc-eyebrow">Recent productions</h5>
+                <h2 className="mb-20">Behind the lens</h2>
+                <p className="mb-20">
+                  A glimpse at our control rooms, camera setups, and live stages
+                  from recent broadcasts.
+                </p>
+                <a href="#contact" data-scroll className="default-btn">
+                  Start a Project
+                </a>
               </div>
             </div>
           </div>
@@ -486,12 +486,18 @@ export default function Home() {
               </p>
               <ul className="social-link">
                 <li>
-                  <a href="https://www.youtube.com/@LiveConnectStudios" aria-label="YouTube">
+                  <a
+                    href="https://www.youtube.com/@LiveConnectStudios"
+                    aria-label="YouTube"
+                  >
                     <i className="fa fa-youtube-play"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="https://facebook.com/profile.php?id=61573432752859" aria-label="Facebook">
+                  <a
+                    href="https://facebook.com/profile.php?id=61573432752859"
+                    aria-label="Facebook"
+                  >
                     <i className="fa fa-facebook"></i>
                   </a>
                 </li>
@@ -501,7 +507,11 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/@live.connect5?_r=1&_t=ZS-96UEAvCAWBR" aria-label="TikTok" className="lc-tiktok-link">
+                  <a
+                    href="https://www.tiktok.com/@live.connect5?_r=1&_t=ZS-96UEAvCAWBR"
+                    aria-label="TikTok"
+                    className="lc-tiktok-link"
+                  >
                     <TikTokIcon />
                   </a>
                 </li>

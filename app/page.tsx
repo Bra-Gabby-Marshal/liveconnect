@@ -305,7 +305,8 @@ export default function Home() {
                         data-gall="galleryimg"
                       >
                         <div>
-                          <img src="/img/zoom.png" alt="Open" />
+                            <img src={`/img/pics/${src}`} alt="Open" />
+                          {/* <img src="/img/zoom.png" alt="Open" /> */}
                         </div>
                       </a>
                     </div>

@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react"
+
 const services = [
   {
     icon: "fa fa-heart",
@@ -87,8 +91,84 @@ function TikTokIcon() {
 }
 
 export default function Home() {
+  const [showFlyer, setShowFlyer] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formMessage, setFormMessage] = useState({ type: "", text: "" });
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Handle smooth scrolling
+  useEffect(() => {
+    const handleSmoothScroll = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('[data-scroll]');
+      if (!link) return;
+      
+      e.preventDefault();
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    document.addEventListener('click', handleSmoothScroll);
+    return () => document.removeEventListener('click', handleSmoothScroll);
+  }, []);
+
+  const closeFlyer = async () => {
+    setShowFlyer(false);
+    
+    // Try to play audio after user interaction (browsers require user interaction)
+    try {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.5;
+        await audioRef.current.play();
+      }
+    } catch (err) {
+      console.log("Audio playback failed:", err);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormMessage({ type: "", text: "" });
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setFormMessage({ type: "success", text: "Message sent successfully! We'll get back to you soon." });
+        e.currentTarget.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      setFormMessage({ type: "error", text: "Failed to send message. Please try again or call us directly." });
+      console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <>
+    <main className="relative min-h-screen">
+      {/* AUDIO */}
+      <audio ref={audioRef} preload="auto">
+        <source src="/audio/jingle.mpeg" type="audio/mpeg" />
+      </audio>
+      
       <div className="site-preloader-wrap">
         <div className="spinner"></div>
       </div>
@@ -102,6 +182,9 @@ export default function Home() {
                 alt="Live Connect"
                 width={112}
                 height={90}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
               />
             </a>
             <div className="d-flex menu-wrap">
@@ -269,7 +352,13 @@ export default function Home() {
               </div>
             </div>
             <div className="col-md-6 d-none d-md-block">
-              <img src="/img/pics/about.jpg" alt="Live Connect crew" />
+              <img 
+                src="/img/pics/about.jpg" 
+                alt="Live Connect crew"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/img/fallback.jpg';
+                }}
+              />
             </div>
           </div>
         </div>
@@ -284,7 +373,13 @@ export default function Home() {
                   <div className="col-lg-4 col-sm-6" key={src}>
                     <div className="portfolio-box">
                       <div className="portfolio-thumb">
-                        <img src={`/img/pics/${src}`} alt="Production still" />
+                        <img 
+                          src={`/img/pics/${src}`} 
+                          alt="Production still"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none';
+                          }}
+                        />
                       </div>
                       <a
                         href={`/img/pics/${src}`}
@@ -293,7 +388,6 @@ export default function Home() {
                       >
                         <div>
                           <img src={`/img/pics/${src}`} alt="Open" />
-                          {/* <img src="/img/zoom.png" alt="Open" /> */}
                         </div>
                       </a>
                     </div>
@@ -396,10 +490,10 @@ export default function Home() {
             <div className="col-lg-7 col-md-12">
               <div className="contact-form lc-contact-form">
                 <form
-                  action="/api/contact"
-                  method="post"
+                  onSubmit={handleSubmit}
                   id="ajax_form"
                   className="form-horizontal"
+                  noValidate
                 >
                   <div className="form-group colum-row row">
                     <div className="col-sm-6">
@@ -462,12 +556,21 @@ export default function Home() {
                         id="submit"
                         className="default-btn submit-button"
                         type="submit"
+                        disabled={isSubmitting}
                       >
-                        Send Message
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </button>
                     </div>
                   </div>
-                  <div id="form-messages" className="alert" role="alert"></div>
+                  {formMessage.text && (
+                    <div 
+                      id="form-messages" 
+                      className={`alert alert-${formMessage.type === "success" ? "success" : "danger"}`} 
+                      role="alert"
+                    >
+                      {formMessage.text}
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -479,7 +582,13 @@ export default function Home() {
         <div className="container">
           <div className="row lc-footer-grid">
             <div className="col-md-5 lc-footer-brand">
-              <img src="/img/logo.png" alt="Live Connect" />
+              <img 
+                src="/img/logo.png" 
+                alt="Live Connect"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
               <p>
                 Professional live streaming and event production. Reliable
                 broadcasts for the moments that matter.
@@ -489,6 +598,8 @@ export default function Home() {
                   <a
                     href="https://www.youtube.com/@LiveConnectStudios"
                     aria-label="YouTube"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fa fa-youtube-play"></i>
                   </a>
@@ -497,6 +608,8 @@ export default function Home() {
                   <a
                     href="https://facebook.com/profile.php?id=61573432752859"
                     aria-label="Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fa fa-facebook"></i>
                   </a>
@@ -511,6 +624,8 @@ export default function Home() {
                     href="https://www.tiktok.com/@live.connect5?_r=1&_t=ZS-96UEAvCAWBR"
                     aria-label="TikTok"
                     className="lc-tiktok-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <TikTokIcon />
                   </a>
@@ -591,6 +706,117 @@ export default function Home() {
       <a data-scroll href="#header" id="scroll-to-top">
         <i className="arrow_carrot-up"></i>
       </a>
-    </>
+    
+      {/* POPUP OVERLAY - WORKING VERSION */}
+      {showFlyer && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(5px)'
+          }}
+          onClick={closeFlyer}
+        >
+          <div 
+            style={{
+              width: '90%',
+              maxWidth: '450px',
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              padding: '20px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              animation: 'slideIn 0.3s ease-out'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ textAlign: 'center', marginBottom: '15px' }}>
+              <h2 style={{ color: '#e31e24', margin: 0, fontSize: '24px' }}>Welcome to Live Connect!</h2>
+              <p style={{ color: '#666', margin: '5px 0 0 0' }}>Professional Live Streaming Services</p>
+            </div>
+            
+            <img
+              src="/img/pics/about.jpg"
+              alt="Live Connect Flyer"
+              style={{
+                width: '100%',
+                borderRadius: '12px',
+                marginBottom: '20px'
+              }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parent = target.parentElement;
+                if (parent) {
+                  const fallback = document.createElement('div');
+                  fallback.style.cssText = `
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 40px;
+                    text-align: center;
+                    border-radius: 12px;
+                    margin-bottom: 20px;
+                  `;
+                  fallback.innerHTML = '<h3>Live Connect Studios</h3><p>Professional Live Streaming & Event Production</p>';
+                  parent.insertBefore(fallback, target);
+                  target.remove();
+                }
+              }}
+            />
+            
+            <p style={{ textAlign: 'center', color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+              🎥 Multi-camera setup • 📡 Stream to all platforms • 🎬 Professional crew
+            </p>
+            
+            <button
+              onClick={closeFlyer}
+              style={{
+                width: '100%',
+                padding: '14px',
+                backgroundColor: '#e31e24',
+                color: 'white',
+                fontWeight: 'bold',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '16px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#c41a1f';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#e31e24';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              Enter Site →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Add animation keyframes */}
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            transform: translateY(-30px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </main>
   );
 }

@@ -86,7 +86,7 @@ export default function PortfolioSection() {
         {/* CTA — gradient-blend button */}
         <div className="text-center mt-[50px]">
           <a
-            href="#contact"
+            href="#"
             data-scroll
             className="group inline-flex items-center gap-2 rounded-full px-9 py-[14px] text-[11px] font-bold uppercase tracking-[2px] text-white
                        bg-[linear-gradient(135deg,#013079_0%,#0269BB_45%,#22d3ee_100%)] bg-[length:200%_200%] bg-left

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700|Oswald:400,500,600,700');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Element-level defaults (ported verbatim from the old main.css typography).
+   Component-specific styling lives inline on the elements as Tailwind utilities.
+   ========================================================================== */
+@layer base {
+  body {
+    background-color: theme('colors.navy');
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 23px;
+    color: theme('colors.muted-gray');
+    font-weight: 400;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #333;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 10px;
+    color: #fff;
+    letter-spacing: -0.05em;
+  }
+  h2 {
+    font-size: 32px;
+    color: #fff;
+    margin: 0 0 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+  }
+  h3, h4 {
+    margin: 0 0 10px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  h3 { font-size: 18px; }
+  h4 { font-size: 16px; }
+  h5, h6 { font-size: 14px; margin: 0 0 10px; }
+
+  img { max-width: 100%; }
+
+  p { font-size: 15px; margin-bottom: 15px; }
+
+  a, a:hover { text-decoration: none; }
+  a:focus { outline: 0; text-decoration: none; }
+
+  a, a:hover, img, button, input, textarea {
+    transition: all 0.5s;
+  }
+
+  input::placeholder,
+  textarea::placeholder { color: #ddd; }
+
+  @media (max-width: 767px) {
+    body, p { font-size: 12px; line-height: 22px; }
+    h1 { font-size: 30px !important; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 16px; }
+  }
+}

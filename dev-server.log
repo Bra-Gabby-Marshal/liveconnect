@@ -1,0 +1,15 @@
+
+> live-connect-website@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 47196, using available port 3001 instead.
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3001
+   - Network:      http://10.40.0.3:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 3.6s (582 modules)
+ GET / 200 in 4485ms

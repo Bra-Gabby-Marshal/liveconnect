@@ -9,47 +9,23 @@ export default function FlyerPopup({ showFlyer, closeFlyer }: FlyerPopupProps) {
   if (!showFlyer) return null;
 
   return (
-    <div 
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        zIndex: 9999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backdropFilter: 'blur(5px)'
-      }}
+    <div
+      className="fixed inset-0 bg-black/85 z-[9999] flex items-center justify-center backdrop-blur-[5px]"
       onClick={closeFlyer}
     >
-      <div 
-        style={{
-          width: '90%',
-          maxWidth: '450px',
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          padding: '20px',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          animation: 'slideIn 0.3s ease-out'
-        }}
+      <div
+        className="w-[90%] max-w-[450px] bg-white rounded-[16px] p-5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] animate-slide-in"
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-          <h2 style={{ color: '#e31e24', margin: 0, fontSize: '24px' }}>Welcome to Live Connect!</h2>
-          <p style={{ color: '#666', margin: '5px 0 0 0' }}>Professional Live Streaming Services</p>
+        <div className="text-center mb-[15px]">
+          <h2 className="text-[#e31e24] m-0 text-[24px]">Welcome to Live Connect!</h2>
+          <p className="text-[#666] mt-[5px] mb-0">Professional Live Streaming Services</p>
         </div>
-        
+
         <img
           src="/img/pics/about.jpg"
           alt="Live Connect Flyer"
-          style={{
-            width: '100%',
-            borderRadius: '12px',
-            marginBottom: '20px'
-          }}
+          className="w-full rounded-[12px] mb-5"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.style.display = 'none';
@@ -70,50 +46,18 @@ export default function FlyerPopup({ showFlyer, closeFlyer }: FlyerPopupProps) {
             }
           }}
         />
-        
-        <p style={{ textAlign: 'center', color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+
+        <p className="text-center text-[#666] mb-5 text-[14px]">
           🎥 Multi-camera setup • 📡 Stream to all platforms • 🎬 Professional crew
         </p>
-        
+
         <button
           onClick={closeFlyer}
-          style={{
-            width: '100%',
-            padding: '14px',
-            backgroundColor: '#e31e24',
-            color: 'white',
-            fontWeight: 'bold',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            transition: 'all 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#c41a1f';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#e31e24';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
+          className="w-full p-[14px] bg-[#e31e24] text-white font-bold border-none rounded-[8px] cursor-pointer text-[16px] transition-all hover:bg-[#c41a1f] hover:-translate-y-0.5"
         >
           Enter Site →
         </button>
       </div>
-      
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            transform: translateY(-30px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 }

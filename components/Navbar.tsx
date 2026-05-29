@@ -6,6 +6,7 @@ import { navLinks } from "@/constants";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState(navLinks[0]?.href ?? "#home");
 
   // Sticky header: ported from the old jQuery main.js (triggerPoint = 80px).
   useEffect(() => {
@@ -13,6 +14,26 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the link for whichever section crosses the
+  // viewport's upper-middle band (replaces the old Bootstrap data-spy).
+  useEffect(() => {
+    const sections = navLinks
+      .map((l) => document.getElementById(l.href.replace("#", "")))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveHref(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   const headerClasses = [
@@ -24,9 +45,17 @@ export default function Navbar() {
 
   const navLinkClasses = (active: boolean) =>
     [
-      "inline-block align-middle px-[10px] max-lg:px-[5px] tracking-[1px] text-[11px] max-lg:text-[10px]",
+      "relative inline-block align-middle px-[10px] max-lg:px-[5px] tracking-[1px] text-[11px] max-lg:text-[10px]",
       "font-semibold uppercase leading-[70px] transition-all hover:text-white",
-      active ? "text-white" : scrolled ? "text-[#ddd]" : "text-white/90",
+      // White underline indicator: hidden by default, shown on hover and when active.
+      "after:content-[''] after:absolute after:inset-x-[10px] after:bottom-[22px] after:h-[2px] after:bg-white after:rounded after:opacity-0 after:transition-opacity hover:after:opacity-100",
+      active ? "text-white after:opacity-100" : scrolled ? "text-[#ddd]" : "text-white/90",
+    ].join(" ");
+
+  const mobileLinkClasses = (active: boolean) =>
+    [
+      "block px-[15px] py-[10px] uppercase text-[12px] font-semibold tracking-[1px] transition-colors",
+      active ? "text-royal" : "text-[#777] hover:text-royal",
     ].join(" ");
 
   const downloadBtnClasses = [
@@ -59,12 +88,17 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     data-scroll
-                    className={navLinkClasses(link.active)}
+                    className={navLinkClasses(activeHref === link.href)}
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setActiveHref(link.href);
+                      setOpen(false);
+                    }}
                   >
                     {link.label}
-                    {link.active && <span className="sr-only">(current)</span>}
+                    {activeHref === link.href && (
+                      <span className="sr-only">(current)</span>
+                    )}
                   </a>
                 </li>
               ))}
@@ -97,9 +131,12 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     data-scroll
-                    className="block px-[15px] py-[10px] text-[#777] hover:text-[#333] uppercase text-[12px] font-semibold tracking-[1px]"
+                    className={mobileLinkClasses(activeHref === link.href)}
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setActiveHref(link.href);
+                      setOpen(false);
+                    }}
                   >
                     {link.label}
                   </a>
@@ -108,7 +145,7 @@ export default function Navbar() {
               <li>
                 <a
                   data-scroll
-                  className="block px-[15px] py-[10px] text-[#777] hover:text-[#333] uppercase text-[12px] font-semibold tracking-[1px]"
+                  className={mobileLinkClasses(false)}
                   href="#contact"
                   onClick={() => setOpen(false)}
                 >

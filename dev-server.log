@@ -13,3 +13,24 @@
  ○ Compiling / ...
  ✓ Compiled / in 3.6s (582 modules)
  GET / 200 in 4485ms
+ ✓ Compiled in 916ms (248 modules)
+ ✓ Compiled in 436ms (248 modules)
+ ✓ Compiled in 385ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\Users\sodey\Downloads\liveConnect\live_connect_website\.next\cache\webpack\client-development\11.pack.gz_' -> 'C:\Users\sodey\Downloads\liveConnect\live_connect_website\.next\cache\webpack\client-development\11.pack.gz'
+ ✓ Compiled / in 252ms (334 modules)
+ GET / 200 in 923ms
+ ✓ Compiled in 1078ms (248 modules)
+ ✓ Compiled / in 187ms (334 modules)
+ GET / 200 in 453ms
+ ✓ Compiled in 847ms (248 modules)
+ ✓ Compiled in 430ms (248 modules)
+ ✓ Compiled in 522ms (248 modules)
+ ✓ Compiled / in 217ms (334 modules)
+ GET / 200 in 615ms
+ ✓ Compiled in 773ms (248 modules)
+ ✓ Compiled in 250ms (248 modules)
+ ✓ Compiled in 533ms (248 modules)
+ ✓ Compiled in 351ms (248 modules)
+ ✓ Compiled in 349ms (248 modules)
+ ✓ Compiled / in 185ms (334 modules)
+ GET / 200 in 632ms

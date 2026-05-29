@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import path from "node:path";
 import {
   renderEnquiryEmail,
   renderConfirmationEmail,
+  LOGO_CID,
 } from "@/lib/emailTemplates";
+
+// Logo embedded inline (by CID) in every outgoing email.
+const logoAttachment = {
+  filename: "live-connect-logo.png",
+  path: path.join(process.cwd(), "public", "img", "logo-white.png"),
+  cid: LOGO_CID,
+};
 
 export const runtime = "nodejs";
 
@@ -109,6 +118,7 @@ export async function POST(request: Request) {
       subject: studioEmail.subject,
       text: studioEmail.text,
       html: studioEmail.html,
+      attachments: [logoAttachment],
     });
   } catch {
     return new NextResponse(
@@ -128,6 +138,7 @@ export async function POST(request: Request) {
       subject: confirmation.subject,
       text: confirmation.text,
       html: confirmation.html,
+      attachments: [logoAttachment],
     });
   } catch (err) {
     console.error("Confirmation email to sender failed:", err);

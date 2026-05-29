@@ -23,6 +23,13 @@ const FONT =
 const STUDIO_NAME = "Live Connect";
 const STUDIO_TAGLINE = "Professional Live Streaming & Event Production";
 
+/**
+ * Content-ID for the logo embedded as an inline attachment. The route attaches
+ * the image file under this CID so it renders in the inbox without depending on
+ * a publicly hosted URL (relative `/img` paths never load in email clients).
+ */
+export const LOGO_CID = "lc-logo";
+
 export interface EnquiryData {
   name: string;
   email: string;
@@ -101,7 +108,9 @@ function layout(opts: {
                   <td width="52" valign="middle">
                     <table role="presentation" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center" valign="middle" width="48" height="48" style="width:48px;height:48px;background-color:rgba(255,255,255,0.14);border-radius:50%;font-family:${FONT};font-size:18px;font-weight:700;letter-spacing:0.5px;color:${C.white};">LC</td>
+                        <td align="center" valign="middle" width="48" height="48" style="width:48px;height:48px;background-color:rgba(255,255,255,0.14);border-radius:50%;">
+                          <img src="cid:${LOGO_CID}" alt="${STUDIO_NAME}" width="48" height="48" style="display:block;width:48px;height:48px;border-radius:50%;" />
+                        </td>
                       </tr>
                     </table>
                   </td>

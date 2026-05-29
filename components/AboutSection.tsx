@@ -1,5 +1,7 @@
 "use client";
 
+import Reveal from "./Reveal";
+
 const features = [
   "Professional broadcast equipment & redundant connectivity",
   "Multi-camera switching with branded graphics",
@@ -13,7 +15,7 @@ export default function AboutSection() {
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-[60px] max-lg:gap-[40px] items-center">
           {/* Text column */}
-          <div>
+          <Reveal>
             <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
               About Live Connect
             </h5>
@@ -54,10 +56,10 @@ export default function AboutSection() {
                 Plan Your Event
               </span>
             </a>
-          </div>
+          </Reveal>
 
           {/* Image column */}
-          <div className="relative">
+          <Reveal delay={150} className="relative">
             {/* Soft gradient glow behind the photo */}
             <div
               aria-hidden="true"
@@ -75,7 +77,7 @@ export default function AboutSection() {
               {/* On-brand LIVE badge */}
 
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

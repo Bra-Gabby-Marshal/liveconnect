@@ -1,6 +1,7 @@
 "use client";
 
 import TikTokIcon from "./TikTokIcon";
+import Reveal from "./Reveal";
 import { phones, footerLinks, socialLinks, contactInfo } from "@/constants";
 
 const whatsappNumber = contactInfo.whatsappNumber;
@@ -9,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="bg-dark-blue text-[#cfd6e1] pt-[70px] pb-0">
       <div className="container">
-        <div className="flex flex-wrap items-start -mx-[15px] pb-[50px] border-b border-white/[0.08]">
+        <Reveal className="flex flex-wrap items-start -mx-[15px] pb-[50px] border-b border-white/[0.08]">
           <div className="w-full px-[15px] md:w-5/12 max-lg:mb-[30px]">
             <img
               src="/img/logo.png"
@@ -71,7 +72,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-        </div>
+        </Reveal>
         <div className="py-[22px] text-center">
           <p className="m-0 text-[12px] uppercase tracking-[2px] text-[#b8c2d4]">
             &copy; {new Date().getFullYear()} Live Connect. All rights

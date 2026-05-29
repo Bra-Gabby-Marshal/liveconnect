@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import TikTokIcon from "./TikTokIcon";
+import Reveal from "./Reveal";
 import { platforms } from "@/constants";
 
 // Brand glyphs as SVGs (24x24, fill=currentColor) so every platform icon fills
@@ -29,28 +30,31 @@ export default function PlatformsSection() {
     <section className="relative bg-dark-blue py-[100px] max-md:py-[60px]">
       <div className="container">
         <div className="text-center">
-          <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
-            Stream anywhere
-          </h5>
-          <h2 className="mb-[20px]">We stream to all major platforms</h2>
-          <p className="text-[#cfd6e1] max-w-[720px] mx-auto text-[15px] mb-[40px]">
-            Your audience picks the platform. We deliver to every one of them
-            — simultaneously, in HD, without dropping a frame.
-          </p>
+          <Reveal>
+            <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
+              Stream anywhere
+            </h5>
+            <h2 className="mb-[20px]">We stream to all major platforms</h2>
+            <p className="text-[#cfd6e1] max-w-[720px] mx-auto text-[15px] mb-[40px]">
+              Your audience picks the platform. We deliver to every one of them
+              — simultaneously, in HD, without dropping a frame.
+            </p>
+          </Reveal>
           <ul className="flex justify-center items-center flex-wrap gap-[40px] max-md:gap-[26px] mt-[10px]">
-            {platforms.map((p) => (
-              <li
-                key={p.label}
-                title={p.label}
-                className="inline-flex flex-col items-center gap-3 text-white transition-all hover:-translate-y-1 hover:text-[#b9d0ea]"
-              >
-                <span className="inline-flex w-[44px] h-[44px] max-md:w-[34px] max-md:h-[34px] items-center justify-center [&>svg]:w-full [&>svg]:h-full">
-                  {p.tiktok ? <TikTokIcon /> : icons[p.label]}
+            {platforms.map((p, i) => (
+              <Reveal as="li" key={p.label} delay={i * 90} className="inline-flex">
+                <span
+                  title={p.label}
+                  className="inline-flex flex-col items-center gap-3 text-white transition-all duration-300 hover:-translate-y-1 hover:text-[#b9d0ea]"
+                >
+                  <span className="inline-flex w-[44px] h-[44px] max-md:w-[34px] max-md:h-[34px] items-center justify-center [&>svg]:w-full [&>svg]:h-full">
+                    {p.tiktok ? <TikTokIcon /> : icons[p.label]}
+                  </span>
+                  <span className="text-[12px] tracking-[2px] uppercase font-semibold">
+                    {p.label}
+                  </span>
                 </span>
-                <span className="text-[12px] tracking-[2px] uppercase font-semibold">
-                  {p.label}
-                </span>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>

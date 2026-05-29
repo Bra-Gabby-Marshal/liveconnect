@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DefaultButton from "./DefaultButton";
+import Reveal from "./Reveal";
 import { phones, contactInfo } from "@/constants";
 
 const whatsappNumber = contactInfo.whatsappNumber;
@@ -55,6 +56,7 @@ export default function ContactSection() {
       <div className="container">
         <div className="flex flex-wrap items-center -mx-[15px] py-[120px] max-lg:pt-0 max-lg:pb-[100px] max-lg:text-center max-md:pb-[60px]">
           <div className="w-full px-[15px] md:w-full lg:w-5/12 max-lg:mb-[40px] max-lg:text-left">
+            <Reveal>
             <div className="mb-[30px]">
               <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
                 Get in touch
@@ -101,9 +103,10 @@ export default function ContactSection() {
                 </div>
               </li>
             </ul>
+            </Reveal>
           </div>
           <div className="w-full px-[15px] md:w-full lg:w-7/12">
-            <div className="pr-[40px] max-lg:pr-0">
+            <Reveal delay={120} className="pr-[40px] max-lg:pr-0">
               <form onSubmit={handleSubmit} id="ajax_form">
                 <div className="flex flex-wrap -mx-[15px]">
                   <div className="w-full px-[15px] sm:w-1/2">
@@ -132,7 +135,20 @@ export default function ContactSection() {
                     <input type="text" id="event_type" name="event_type" className={fieldClasses} placeholder="Event Type (e.g. Wedding)" />
                   </div>
                   <div className="w-full px-[15px] sm:w-1/2">
-                    <input type="date" id="event_date" name="event_date" className={`${fieldClasses} [color-scheme:dark]`} placeholder="Event Date" />
+                    <input
+                      type="text"
+                      id="event_date"
+                      name="event_date"
+                      className={`${fieldClasses} [color-scheme:dark]`}
+                      placeholder="Event Date"
+                      onFocus={(e) => {
+                        e.currentTarget.type = "date";
+                        e.currentTarget.showPicker?.();
+                      }}
+                      onBlur={(e) => {
+                        if (!e.currentTarget.value) e.currentTarget.type = "text";
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-[15px]">
@@ -172,7 +188,7 @@ export default function ContactSection() {
                   </div>
                 )}
               </form>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

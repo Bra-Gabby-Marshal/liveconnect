@@ -3,14 +3,16 @@
 import Image from "next/image";
 import TikTokIcon from "./TikTokIcon";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 import { phones, footerLinks, socialLinks, contactInfo } from "@/constants";
 
 const whatsappNumber = contactInfo.whatsappNumber;
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-blue text-[#cfd6e1] pt-[70px] pb-0">
-      <div className="container">
+    <footer className="relative overflow-hidden bg-dark-blue text-[#cfd6e1] pt-[70px] pb-0">
+      <SectionDecor variant="footer" />
+      <div className="container relative z-[1]">
         <Reveal className="flex flex-wrap items-start -mx-[15px] pb-[50px] border-b border-white/[0.08]">
           <div className="w-full px-[15px] md:w-5/12 max-lg:mb-[30px]">
             <Image

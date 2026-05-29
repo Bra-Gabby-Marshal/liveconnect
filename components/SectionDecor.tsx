@@ -53,7 +53,8 @@ export type DecorVariant =
   | "stats"
   | "portfolio"
   | "platforms"
-  | "contact";
+  | "contact"
+  | "footer";
 
 const ROYAL = "rgba(2,105,187,0.35)";
 const ROYAL_SOFT = "rgba(2,105,187,0.26)";
@@ -110,6 +111,15 @@ const CONFIG: Record<DecorVariant, DecorConfig> = {
     orbs: [
       { pos: "-bottom-32 -right-24 w-[460px] h-[460px]", color: ROYAL, anim: "animate-lc-float-b" },
       { pos: "top-[-120px] right-[16%] w-[340px] h-[340px]", color: CYAN, anim: "animate-lc-float-a" },
+    ],
+  },
+  footer: {
+    grid: true,
+    hairline: true,
+    signal: "br",
+    orbs: [
+      { pos: "top-[-160px] left-[-90px] w-[380px] h-[380px]", color: ROYAL_SOFT, anim: "animate-lc-float-a" },
+      { pos: "bottom-[-180px] right-[8%] w-[360px] h-[360px]", color: CYAN, anim: "animate-lc-float-b" },
     ],
   },
 };

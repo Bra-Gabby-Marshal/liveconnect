@@ -120,3 +120,10 @@
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
  ✓ Compiled / in 208ms (334 modules)
  GET / 200 in 681ms
+ ✓ Compiled in 701ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 469ms (248 modules)
+ ✓ Compiled in 586ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled / in 240ms (334 modules)
+ GET / 200 in 729ms

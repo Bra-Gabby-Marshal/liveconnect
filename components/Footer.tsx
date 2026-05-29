@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="py-[22px] text-center">
           <p className="m-0 text-[12px] uppercase tracking-[2px] text-[#b8c2d4]">
             &copy; {new Date().getFullYear()} Live Connect. All rights
-            reserved. <span className="max-md:hidden">Designed by Sodey Haidor Gabriel</span>
+            reserved. <span className="max-md:hidden text-[10px] tracking-[1px] opacity-70">Designed by Sodey Haidor Gabriel</span>
           </p>
         </div>
       </div>

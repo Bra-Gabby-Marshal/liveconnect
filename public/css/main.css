@@ -1084,12 +1084,16 @@ ul.nav > li > a.active{
 }
 
 /* Contact form */
+.lc-contact-form .form-group{
+    margin-bottom: 0;
+}
 .lc-contact-form .form-control{
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
     border-radius: 10px;
     padding: 10px 16px;
     height: 48px;
+    margin-bottom: 20px;
     color: #fff;
 }
 .lc-contact-form .form-control:focus{
@@ -1209,6 +1213,7 @@ ul.nav > li > a.active{
     .hero-content h1{ font-size: 52px; }
     .lc-contact-info-col{ margin-bottom: 40px; text-align: left; }
     .contact-wrap{ text-align: left; }
+    .contact-form.lc-contact-form{ padding-right: 0; }
     .lc-footer-brand{ margin-bottom: 30px; }
     .lc-footer-links{ margin-bottom: 30px; }
 }

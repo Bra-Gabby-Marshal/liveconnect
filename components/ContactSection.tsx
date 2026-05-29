@@ -119,6 +119,20 @@ export default function ContactSection() {
                     />
                   </div>
                 </div>
+                <div className="form-group row">
+                  <div className="col-md-12">
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="form-control"
+                      placeholder="Phone Number"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      required
+                    />
+                  </div>
+                </div>
                 <div className="form-group colum-row row">
                   <div className="col-sm-6">
                     <input

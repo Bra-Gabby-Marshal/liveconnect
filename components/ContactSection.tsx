@@ -49,7 +49,7 @@ export default function ContactSection() {
   };
 
   const fieldClasses =
-    "w-full border border-white/[0.12] bg-white/[0.04] rounded-[10px] px-4 py-[10px] h-12 mb-5 text-white outline-none focus:border-royal focus:bg-[rgba(2,105,187,0.08)]";
+    "w-full border border-white/[0.12] bg-white/[0.04] rounded-[10px] px-4 py-[10px] h-12 mb-5 text-base text-white outline-none focus:border-royal focus:bg-[rgba(2,105,187,0.08)]";
 
   return (
     <section id="contact" className="relative z-[1] overflow-hidden bg-navy">

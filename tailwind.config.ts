@@ -87,6 +87,17 @@ const config: Config = {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
+        // Broadcast "signal" emission — arcs pulse outward like a transmitter.
+        "lc-emit": {
+          "0%": { transform: "scale(0.85)", opacity: "0" },
+          "35%": { opacity: "1" },
+          "100%": { transform: "scale(1.25)", opacity: "0" },
+        },
+        // Slow bokeh-like twinkle for drifting light particles.
+        "lc-twinkle": {
+          "0%, 100%": { transform: "translateY(0)", opacity: "0.15" },
+          "50%": { transform: "translateY(-16px)", opacity: "0.7" },
+        },
       },
       animation: {
         "sk-scaleout": "sk-scaleout 1s infinite ease-in-out",
@@ -98,6 +109,8 @@ const config: Config = {
         "lc-float-a": "lc-float-a 18s ease-in-out infinite",
         "lc-float-b": "lc-float-b 22s ease-in-out infinite",
         "lc-spin-slow": "lc-spin-slow 70s linear infinite",
+        "lc-emit": "lc-emit 6s ease-out infinite",
+        "lc-twinkle": "lc-twinkle 9s ease-in-out infinite",
       },
     },
   },

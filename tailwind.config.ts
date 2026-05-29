@@ -63,6 +63,17 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "hero-pulse": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            textShadow: "0 4px 24px rgba(0,0,0,0.35)",
+          },
+          "50%": {
+            transform: "scale(1.03)",
+            textShadow:
+              "0 4px 24px rgba(0,0,0,0.35), 0 0 28px rgba(34,211,238,0.45)",
+          },
+        },
       },
       animation: {
         "sk-scaleout": "sk-scaleout 1s infinite ease-in-out",
@@ -70,6 +81,7 @@ const config: Config = {
         "lc-pulse": "lc-pulse 2.4s infinite",
         "slide-in": "slide-in 0.3s ease-out",
         "fade-in-up": "fade-in-up 0.3s ease-out",
+        "hero-pulse": "hero-pulse 2.8s ease-in-out infinite",
       },
     },
   },

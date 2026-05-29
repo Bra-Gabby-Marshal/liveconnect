@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import {
+  renderEnquiryEmail,
+  renderConfirmationEmail,
+} from "@/lib/emailTemplates";
 
 export const runtime = "nodejs";
 
@@ -15,6 +19,7 @@ export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
   let name = "";
   let email = "";
+  let phone = "";
   let message = "";
   let eventType = "";
   let eventDate = "";
@@ -24,6 +29,7 @@ export async function POST(request: Request) {
     const params = new URLSearchParams(body);
     name = params.get("name") ?? "";
     email = params.get("email") ?? "";
+    phone = params.get("phone") ?? "";
     message = params.get("message") ?? "";
     eventType = params.get("event_type") ?? "";
     eventDate = params.get("event_date") ?? "";
@@ -31,6 +37,7 @@ export async function POST(request: Request) {
     const form = await request.formData();
     name = String(form.get("name") ?? "");
     email = String(form.get("email") ?? "");
+    phone = String(form.get("phone") ?? "");
     message = String(form.get("message") ?? "");
     eventType = String(form.get("event_type") ?? "");
     eventDate = String(form.get("event_date") ?? "");
@@ -38,6 +45,7 @@ export async function POST(request: Request) {
     const data = (await request.json()) as Record<string, unknown>;
     name = String(data.name ?? "");
     email = String(data.email ?? "");
+    phone = String(data.phone ?? "");
     message = String(data.message ?? "");
     eventType = String(data.event_type ?? "");
     eventDate = String(data.event_date ?? "");
@@ -50,11 +58,12 @@ export async function POST(request: Request) {
 
   name = stripTags(name).replace(/[\r\n]+/g, " ").trim();
   email = email.trim();
+  phone = stripTags(phone).replace(/[\r\n]+/g, " ").trim();
   message = message.trim();
   eventType = stripTags(eventType).replace(/[\r\n]+/g, " ").trim();
   eventDate = stripTags(eventDate).replace(/[\r\n]+/g, " ").trim();
 
-  if (!name || !message || !isValidEmail(email)) {
+  if (!name || !phone || !message || !isValidEmail(email)) {
     return new NextResponse(
       "Oops! There was a problem with your submission. Please complete the form and try again.",
       { status: 400 },
@@ -88,29 +97,40 @@ export async function POST(request: Request) {
         : undefined,
   });
 
-  const subject = eventType
-    ? `New booking enquiry: ${eventType} — ${name}`
-    : `New booking enquiry from ${name}`;
-  const text =
-    `Name: ${name}\n` +
-    `Email: ${email}\n` +
-    `Event type: ${eventType || "(not provided)"}\n` +
-    `Event date: ${eventDate || "(not provided)"}\n\n` +
-    `Message:\n${message}\n`;
+  const enquiry = { name, email, phone, eventType, eventDate, message };
+  const year = new Date().getFullYear();
+  const studioEmail = renderEnquiryEmail(enquiry, year);
 
   try {
     await transporter.sendMail({
       from: MAIL_FROM ?? `${name} <${email}>`,
       to: MAIL_TO,
       replyTo: email,
-      subject,
-      text,
+      subject: studioEmail.subject,
+      text: studioEmail.text,
+      html: studioEmail.html,
     });
   } catch {
     return new NextResponse(
       "Oops! Something went wrong and we couldn't send your message.",
       { status: 500 },
     );
+  }
+
+  // Send a confirmation copy to the person who submitted the form.
+  // A failure here must not fail the request — the enquiry was already delivered.
+  try {
+    const confirmation = renderConfirmationEmail(enquiry, year);
+    await transporter.sendMail({
+      from: MAIL_FROM ?? MAIL_TO,
+      to: email,
+      replyTo: MAIL_TO,
+      subject: confirmation.subject,
+      text: confirmation.text,
+      html: confirmation.html,
+    });
+  } catch (err) {
+    console.error("Confirmation email to sender failed:", err);
   }
 
   return new NextResponse("Thank You! Your message has been sent.", {

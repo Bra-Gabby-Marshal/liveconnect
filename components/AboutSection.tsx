@@ -2,57 +2,67 @@
 
 import DefaultButton from "./DefaultButton";
 
+const features = [
+  "Professional broadcast equipment & redundant connectivity",
+  "Multi-camera switching with branded graphics",
+  "Reliable streaming to every major platform",
+  "Experienced crew on the ground and at the desk",
+];
+
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-navy">
-      <div className="w-full mx-auto px-[15px]">
-        <div className="flex flex-wrap items-center -mx-[15px]">
-          <div className="w-full md:w-1/2 px-[15px]">
-            <div className="pl-[80px] pr-[40px] max-lg:p-[60px_0]">
-              <div className="mb-[20px]">
-                <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
-                  About Live Connect
-                </h5>
-                <h2>Built for broadcasts you can trust</h2>
-              </div>
-              <p className="text-[#bbb]">
-                Live Connect is a media-tech production company delivering
-                reliable live streaming for events that matter. We bring the
-                control-room discipline of broadcast TV to weddings, churches,
-                campaigns, and corporate stages — so the moment plays back the
-                way it happened.
-              </p>
-              <ul className="mt-[18px] mb-[28px] [&>li]:text-[#d6dde7] [&>li]:text-[14px] [&>li]:py-2 [&>li]:flex [&>li]:items-start [&>li]:gap-3 [&_i]:text-royal [&_i]:mt-1">
-                <li>
-                  <i className="fa fa-check"></i> Professional broadcast
-                  equipment &amp; redundant connectivity
+    <section id="about" className="bg-navy py-[100px] max-md:py-[60px]">
+      <div className="container">
+        <div className="grid lg:grid-cols-2 gap-[60px] max-lg:gap-[40px] items-center">
+          {/* Text column */}
+          <div>
+            <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
+              About Live Connect
+            </h5>
+            <h2 className="mb-[18px]">Built for broadcasts you can trust</h2>
+            <p className="text-[#bcc6d4] leading-[1.8]">
+              Live Connect is a media-tech production company delivering
+              reliable live streaming for events that matter. We bring the
+              control-room discipline of broadcast TV to weddings, churches,
+              campaigns, and corporate stages — so the moment plays back the
+              way it happened.
+            </p>
+
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-4 my-[30px]">
+              {features.map((f) => (
+                <li key={f} className="flex items-start gap-3">
+                  <span className="shrink-0 w-8 h-8 rounded-[8px] bg-[linear-gradient(135deg,#0269BB,#013079)] text-white inline-flex items-center justify-center text-[12px] shadow-[0_8px_18px_-8px_rgba(2,105,187,0.8)]">
+                    <i className="fa fa-check"></i>
+                  </span>
+                  <span className="text-[#d6dde7] text-[14px] leading-snug">{f}</span>
                 </li>
-                <li>
-                  <i className="fa fa-check"></i> Multi-camera switching with
-                  branded graphics
-                </li>
-                <li>
-                  <i className="fa fa-check"></i> Reliable streaming to every
-                  major platform
-                </li>
-                <li>
-                  <i className="fa fa-check"></i> Experienced crew on the
-                  ground and at the desk
-                </li>
-              </ul>
-              <DefaultButton href="#contact" data-scroll className="mt-[20px]">
-                Plan Your Event
-              </DefaultButton>
-            </div>
+              ))}
+            </ul>
+
+            <DefaultButton href="#contact" data-scroll>
+              Plan Your Event
+            </DefaultButton>
           </div>
-          <div className="w-full md:w-1/2 px-[15px] hidden md:block">
-            <img
-              src="/img/pics/about.jpg"
-              alt="Live Connect crew"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = '/img/fallback.jpg';
-              }}
+
+          {/* Image column */}
+          <div className="relative">
+            {/* Soft gradient glow behind the photo */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-2 rounded-[24px] bg-[linear-gradient(135deg,#0269BB,#22d3ee)] opacity-25 blur-2xl"
             />
+            <div className="relative overflow-hidden rounded-[18px] border border-white/[0.08] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
+              <img
+                src="/img/pics/about.jpg"
+                alt="Live Connect crew"
+                className="w-full aspect-[4/3] object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/img/fallback.jpg";
+                }}
+              />
+              {/* On-brand LIVE badge */}
+
+            </div>
           </div>
         </div>
       </div>

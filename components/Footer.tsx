@@ -23,7 +23,7 @@ export default function Footer() {
               Professional live streaming and event production. Reliable
               broadcasts for the moments that matter.
             </p>
-            <ul className="[&>li]:inline-block [&>li]:mr-3 [&_a]:text-[#bbb] [&_a]:text-[18px] [&_a]:inline-flex [&_a]:items-center [&_a]:hover:text-white [&_svg]:w-[18px] [&_svg]:h-[18px]">
+            <ul className="flex items-center gap-3 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:w-6 [&_a]:h-6 [&_a]:text-[18px] [&_a]:leading-none [&_a]:text-[#bbb] [&_a]:hover:text-white [&_svg]:w-[18px] [&_svg]:h-[18px]">
               {socialLinks.map((social) => (
                 <li key={social.label}>
                   <a

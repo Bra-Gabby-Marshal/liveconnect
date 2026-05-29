@@ -9,7 +9,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#01173F_0%,#013079_100%)] py-[100px] max-md:py-[60px]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#0A2A5E_0%,#0A4498_100%)] py-[100px] max-md:py-[60px]"
     >
       <SectionDecor variant="services" />
       <div className="container relative z-[1]">

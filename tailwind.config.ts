@@ -27,9 +27,9 @@ const config: Config = {
     },
     extend: {
       colors: {
-        navy: "#01173F",
+        navy: "#0A2A5E",
         royal: "#0269BB",
-        "dark-blue": "#013079",
+        "dark-blue": "#0A4498",
         "light-gray": "#DFDFE1",
         "near-white": "#F9FCFD",
         "muted-gray": "#9F9B9D",

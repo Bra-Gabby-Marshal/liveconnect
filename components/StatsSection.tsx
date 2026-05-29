@@ -6,7 +6,7 @@ import { stats } from "@/constants";
 
 export default function StatsSection() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#013079_0%,#0269BB_100%)] py-[60px]">
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#0A4498_0%,#0a78d1_100%)] py-[60px]">
       <SectionDecor variant="stats" />
       <div className="container relative z-[1]">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6">

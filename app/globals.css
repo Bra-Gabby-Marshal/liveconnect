@@ -14,7 +14,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     line-height: 23px;
-    color: theme('colors.muted-gray');
+    color: #c3ccd9;
     font-weight: 400;
     position: relative;
     overflow-x: hidden;
@@ -66,6 +66,14 @@
 
   input::placeholder,
   textarea::placeholder { color: #ddd; }
+
+  /* The event-date field is a native <input type="date"> (so mobile shows the
+     real picker and there's no focus-zoom). While it's empty and unfocused we
+     make its text transparent — hiding the locale format string — so the
+     custom "Event Date" placeholder overlay reads cleanly. The calendar picker
+     icon is a separate indicator and stays visible. */
+  input.lc-date-placeholder { color: transparent; }
+  input.lc-date-placeholder::-webkit-datetime-edit { color: transparent; }
 
   @media (max-width: 767px) {
     body, p { font-size: 12px; line-height: 22px; }

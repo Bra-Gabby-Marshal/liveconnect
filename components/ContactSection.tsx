@@ -11,6 +11,10 @@ const whatsappNumber = contactInfo.whatsappNumber;
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState({ type: "", text: "" });
+  // Controlled so we can show a custom placeholder over the native date input
+  // and clear it on a successful submit (form.reset() can't reset React state).
+  const [eventDate, setEventDate] = useState("");
+  const [dateFocused, setDateFocused] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,6 +37,7 @@ export default function ContactSection() {
       if (response.ok) {
         setFormMessage({ type: "success", text: "Message sent successfully! We'll get back to you soon." });
         form.reset();
+        setEventDate("");
       } else {
         const serverText = await response.text();
         throw new Error(serverText || "Failed to send message");
@@ -137,20 +142,35 @@ export default function ContactSection() {
                     <input type="text" id="event_type" name="event_type" className={fieldClasses} placeholder="Event Type (e.g. Wedding)" />
                   </div>
                   <div className="w-full px-[15px] sm:w-1/2">
-                    <input
-                      type="text"
-                      id="event_date"
-                      name="event_date"
-                      className={`${fieldClasses} [color-scheme:dark]`}
-                      placeholder="Event Date"
-                      onFocus={(e) => {
-                        e.currentTarget.type = "date";
-                        e.currentTarget.showPicker?.();
-                      }}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.value) e.currentTarget.type = "text";
-                      }}
-                    />
+                    <div className="relative">
+                      <input
+                        type="date"
+                        id="event_date"
+                        name="event_date"
+                        aria-label="Event Date"
+                        value={eventDate}
+                        onChange={(e) => setEventDate(e.target.value)}
+                        onFocus={() => setDateFocused(true)}
+                        onBlur={() => setDateFocused(false)}
+                        onClick={(e) => {
+                          // Open the picker on tap/click where supported; on mobile
+                          // a native date input opens its picker on tap anyway.
+                          try {
+                            e.currentTarget.showPicker?.();
+                          } catch {
+                            /* not allowed in this context — ignore */
+                          }
+                        }}
+                        className={`${fieldClasses} [color-scheme:dark] ${
+                          !eventDate && !dateFocused ? "lc-date-placeholder" : ""
+                        }`}
+                      />
+                      {!eventDate && !dateFocused && (
+                        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#ddd] text-base">
+                          Event Date
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-[15px]">

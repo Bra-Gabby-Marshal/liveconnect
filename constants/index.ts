@@ -120,4 +120,6 @@ export const siteConfig = {
   tagline: "Professional Live Streaming & Event Production",
   description: "Professional multi-camera live production setup. Reliable broadcasts to every major platform — anywhere your audience is.",
   logo: "/img/logo.png",
+  // Set NEXT_PUBLIC_SITE_URL in your env to the real production domain.
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.liveconnect.com",
 };

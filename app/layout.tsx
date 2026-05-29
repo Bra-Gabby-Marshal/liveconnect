@@ -82,7 +82,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#01173F",
+  themeColor: "#0A2A5E",
 };
 
 // JSON-LD structured data (LocalBusiness) for rich results.

@@ -41,7 +41,7 @@ export default function PortfolioSection() {
   return (
     <section
       id="works"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#013079_0%,#01173F_100%)] py-[100px] max-md:py-[60px]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#0A4498_0%,#0A2A5E_100%)] py-[100px] max-md:py-[60px]"
     >
       <SectionDecor variant="portfolio" />
       <div className="container relative z-[1]">

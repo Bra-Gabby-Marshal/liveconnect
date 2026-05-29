@@ -56,9 +56,9 @@ export type DecorVariant =
   | "contact"
   | "footer";
 
-const ROYAL = "rgba(2,105,187,0.35)";
-const ROYAL_SOFT = "rgba(2,105,187,0.26)";
-const CYAN = "rgba(34,211,238,0.22)";
+const ROYAL = "rgba(2,105,187,0.45)";
+const ROYAL_SOFT = "rgba(2,105,187,0.34)";
+const CYAN = "rgba(34,211,238,0.32)";
 
 const CONFIG: Record<DecorVariant, DecorConfig> = {
   services: {
@@ -125,7 +125,7 @@ const CONFIG: Record<DecorVariant, DecorConfig> = {
 };
 
 const dotGridStyle: CSSProperties = {
-  backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+  backgroundImage: "radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px)",
   backgroundSize: "24px 24px",
   WebkitMaskImage: "radial-gradient(ellipse at center, black 0%, transparent 72%)",
   maskImage: "radial-gradient(ellipse at center, black 0%, transparent 72%)",

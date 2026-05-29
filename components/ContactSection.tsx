@@ -86,9 +86,6 @@ export default function ContactSection() {
                 </div>
               </li>
               <li>
-                <span className="w-12 h-12 rounded-[12px] bg-[linear-gradient(135deg,#0269BB,#013079)] text-white inline-flex items-center justify-center shrink-0 [&>i]:text-[18px]">
-                  <i className="fa fa-whatsapp"></i>
-                </span>
                 <div>
                   <span className="block uppercase tracking-[2px] text-[11px] text-royal font-bold mb-[6px]">
                     Chat on WhatsApp
@@ -152,7 +149,7 @@ export default function ContactSection() {
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-[15px]">
-                  <div className="w-full px-[15px] md:w-full">
+                  <div className="w-full px-[15px] md:w-full text-center">
                     <DefaultButton
                       type="submit"
                       disabled={isSubmitting}

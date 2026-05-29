@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const features = [
@@ -65,17 +66,14 @@ export default function AboutSection() {
               aria-hidden="true"
               className="absolute -inset-2 rounded-[24px] bg-[linear-gradient(135deg,#0269BB,#22d3ee)] opacity-25 blur-2xl"
             />
-            <div className="relative overflow-hidden rounded-[18px] border border-white/[0.08] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
-              <img
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[18px] border border-white/[0.08] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
+              <Image
                 src="/img/pics/about.jpg"
                 alt="Live Connect crew"
-                className="w-full aspect-[4/3] object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/img/fallback.jpg";
-                }}
+                fill
+                sizes="(max-width: 991px) 100vw, 50vw"
+                className="object-cover"
               />
-              {/* On-brand LIVE badge */}
-
             </div>
           </Reveal>
         </div>

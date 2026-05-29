@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Reveal from "./Reveal";
 import { services } from "@/constants";
 
@@ -32,13 +33,12 @@ export default function ServicesSection() {
                 className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#0269BB,#013079)]"
               />
               {/* Background image */}
-              <img
+              <Image
                 src={s.image}
                 alt={s.title}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
+                fill
+                sizes="(max-width: 575px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               {/* Legibility overlay */}
               <span className="absolute inset-0 bg-[linear-gradient(to_top,rgba(1,23,63,0.96)_0%,rgba(1,23,63,0.72)_42%,rgba(1,23,63,0.2)_100%)]" />

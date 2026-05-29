@@ -46,7 +46,11 @@ export default function Home() {
       
       const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        // Offset for the fixed header so sections don't land under it.
+        const headerOffset = 100;
+        const top =
+          element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
       }
     };
 

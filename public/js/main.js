@@ -24,12 +24,9 @@
 	});
 
 
-/*=========================================================================
-	Initialize smoothscroll plugin
-=========================================================================*/
-	smoothScroll.init({
-		offset: 60
-	});
+/* Smooth scrolling for [data-scroll] links is handled in React (app/page.tsx),
+   so the cferdinandi smooth-scroll plugin is intentionally not initialized here
+   — running both caused two scroll animations to fight over the same links. */
 
 /*=========================================================================
 	WOW Active

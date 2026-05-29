@@ -35,23 +35,35 @@ export default function HeroSection() {
           </span>
           </Reveal>
 
-          <Reveal delay={120}>
-          <h1 className="text-[72px] max-lg:text-[52px] max-md:!text-[38px] uppercase tracking-[-0.02em] [text-shadow:0_4px_24px_rgba(0,0,0,0.35)]">
-            Stream Your Events{" "}
-            <span className="text-[#FF0000] relative inline-block px-1 after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-[6px] after:h-[3px] after:bg-[#FF0000] after:rounded-[2px] after:opacity-[0.85]">
+          <h1
+            className="text-[72px] max-lg:text-[52px] max-md:!text-[38px] uppercase tracking-[-0.02em] [text-shadow:0_4px_24px_rgba(0,0,0,0.35)] animate-hero-pulse motion-reduce:animate-none [transform-origin:center]"
+            style={{ animationDelay: "1300ms" }}
+          >
+            <span className="inline-block animate-[fade-in-up_700ms_ease-out_both] motion-reduce:animate-none" style={{ animationDelay: "120ms" }}>
+              Stream
+            </span>{" "}
+            <span className="inline-block animate-[fade-in-up_700ms_ease-out_both] motion-reduce:animate-none" style={{ animationDelay: "240ms" }}>
+              Your
+            </span>{" "}
+            <span className="inline-block animate-[fade-in-up_700ms_ease-out_both] motion-reduce:animate-none" style={{ animationDelay: "360ms" }}>
+              Events
+            </span>{" "}
+            <span
+              className="inline-block animate-[fade-in-up_700ms_ease-out_both] motion-reduce:animate-none text-[#FF0000] relative px-1 after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-[6px] after:h-[3px] after:bg-[#FF0000] after:rounded-[2px] after:opacity-[0.85]"
+              style={{ animationDelay: "480ms" }}
+            >
               Live
             </span>
           </h1>
-          </Reveal>
 
-          <Reveal delay={240}>
+          <Reveal delay={560}>
           <p className="text-[#e6ecf4] max-w-[640px] mx-auto mt-5 mb-9 text-[16px] leading-[1.8]">
             {siteConfig.description}
           </p>
           </Reveal>
 
           {/* CTAs */}
-          <Reveal delay={340}>
+          <Reveal delay={680}>
           <div className="flex justify-center items-center gap-4 max-md:gap-3 flex-wrap">
             <a
               href="#contact"
@@ -78,7 +90,7 @@ export default function HeroSection() {
           </Reveal>
 
           {/* Social chips */}
-          <Reveal delay={440}>
+          <Reveal delay={800}>
           <ul className="mt-9 flex justify-center items-center gap-4">
             {heroSocialLinks.map((social) => (
               <li key={social.label}>

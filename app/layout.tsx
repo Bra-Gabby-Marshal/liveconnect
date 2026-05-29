@@ -46,7 +46,6 @@ export default function RootLayout({
         <Script src="/js/vendor/bootstrap.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/tether.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/owl.carousel.min.js" strategy="afterInteractive" />
-        <Script src="/js/vendor/smooth-scroll.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/venobox.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/jquery.simple-text-rotator.js" strategy="afterInteractive" />
         <Script src="/js/vendor/wow.min.js" strategy="afterInteractive" />

@@ -14,7 +14,7 @@ export default function Footer() {
             <img
               src="/img/logo.png"
               alt="Live Connect"
-              className="max-h-[44px] mb-4"
+              className="max-h-[80px] mb-4"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
@@ -23,7 +23,7 @@ export default function Footer() {
               Professional live streaming and event production. Reliable
               broadcasts for the moments that matter.
             </p>
-            <ul className="[&>li]:inline-block [&>li]:mr-3 [&_a]:text-[#bbb] [&_a]:text-[18px] [&_a]:inline-flex [&_a]:items-center [&_a]:hover:text-white [&_svg]:w-[18px] [&_svg]:h-[18px]">
+            <ul className="flex items-center gap-3 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:w-6 [&_a]:h-6 [&_a]:text-[18px] [&_a]:leading-none [&_a]:text-[#bbb] [&_a]:hover:text-white [&_svg]:w-[18px] [&_svg]:h-[18px]">
               {socialLinks.map((social) => (
                 <li key={social.label}>
                   <a
@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="py-[22px] text-center">
           <p className="m-0 text-[12px] uppercase tracking-[2px] text-[#b8c2d4]">
             &copy; {new Date().getFullYear()} Live Connect. All rights
-            reserved. <span className="max-md:hidden">Designed by Sodey Haidor Gabriel</span>
+            reserved. <span className="max-md:hidden text-[10px] tracking-[1px] opacity-70">Designed by Sodey Haidor Gabriel</span>
           </p>
         </div>
       </div>

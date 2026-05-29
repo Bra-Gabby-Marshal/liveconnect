@@ -1,5 +1,6 @@
 "use client";
 
+import Reveal from "./Reveal";
 import { services } from "@/constants";
 
 export default function ServicesSection() {
@@ -9,7 +10,7 @@ export default function ServicesSection() {
       className="relative bg-[linear-gradient(180deg,#01173F_0%,#013079_100%)] py-[100px] max-md:py-[60px]"
     >
       <div className="container">
-        <div className="text-center mb-[50px]">
+        <Reveal className="text-center mb-[50px]">
           <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
             What we cover
           </h5>
@@ -19,13 +20,13 @@ export default function ServicesSection() {
             the moment — from intimate ceremonies to stadium-scale
             productions.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {services.map((s) => (
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 90} className="h-full">
             <div
-              key={s.title}
-              className="group relative overflow-hidden rounded-[16px] border border-white/[0.07] bg-white/[0.03] p-8 transition-all duration-300 hover:-translate-y-2 hover:border-royal/40 hover:bg-white/[0.05] hover:shadow-[0_30px_60px_-30px_rgba(2,105,187,0.7)]"
+              className="group relative h-full overflow-hidden rounded-[16px] border border-white/[0.07] bg-white/[0.03] p-8 transition-all duration-300 hover:-translate-y-2 hover:border-royal/40 hover:bg-white/[0.05] hover:shadow-[0_30px_60px_-30px_rgba(2,105,187,0.7)]"
             >
               {/* Top accent bar grows in on hover */}
               <span
@@ -48,6 +49,7 @@ export default function ServicesSection() {
                 {s.desc}
               </p>
             </div>
+            </Reveal>
           ))}
         </div>
       </div>

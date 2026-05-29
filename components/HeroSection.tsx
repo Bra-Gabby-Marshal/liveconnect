@@ -1,6 +1,7 @@
 "use client";
 
 import TikTokIcon from "./TikTokIcon";
+import Reveal from "./Reveal";
 import { socialLinks, siteConfig } from "@/constants";
 
 export default function HeroSection() {
@@ -22,7 +23,8 @@ export default function HeroSection() {
       <div className="container relative z-[2]">
         <div className="text-center max-w-[880px] mx-auto">
           {/* LIVE badge */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-sm px-4 py-1.5 mb-7">
+          <Reveal delay={0} className="mb-7 inline-block">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] backdrop-blur-sm px-4 py-1.5">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#FF0000] opacity-75 animate-ping"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FF0000]"></span>
@@ -31,19 +33,25 @@ export default function HeroSection() {
               Live Streaming &amp; Event Production
             </span>
           </span>
+          </Reveal>
 
+          <Reveal delay={120}>
           <h1 className="text-[72px] max-lg:text-[52px] max-md:!text-[38px] uppercase tracking-[-0.02em] [text-shadow:0_4px_24px_rgba(0,0,0,0.35)]">
             Stream Your Events{" "}
             <span className="text-[#FF0000] relative inline-block px-1 after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-[6px] after:h-[3px] after:bg-[#FF0000] after:rounded-[2px] after:opacity-[0.85]">
               Live
             </span>
           </h1>
+          </Reveal>
 
+          <Reveal delay={240}>
           <p className="text-[#e6ecf4] max-w-[640px] mx-auto mt-5 mb-9 text-[16px] leading-[1.8]">
             {siteConfig.description}
           </p>
+          </Reveal>
 
           {/* CTAs */}
+          <Reveal delay={340}>
           <div className="flex justify-center items-center gap-4 max-md:gap-3 flex-wrap">
             <a
               href="#contact"
@@ -67,8 +75,10 @@ export default function HeroSection() {
               <i className="fa fa-play-circle text-[14px]"></i> View Our Work
             </a>
           </div>
+          </Reveal>
 
           {/* Social chips */}
+          <Reveal delay={440}>
           <ul className="mt-9 flex justify-center items-center gap-4">
             {heroSocialLinks.map((social) => (
               <li key={social.label}>
@@ -82,6 +92,7 @@ export default function HeroSection() {
               </li>
             ))}
           </ul>
+          </Reveal>
         </div>
       </div>
 

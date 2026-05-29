@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Reveal from "./Reveal";
 import { portfolioImages } from "@/constants";
 
 export default function PortfolioSection() {
@@ -42,7 +43,7 @@ export default function PortfolioSection() {
     >
       <div className="container">
         {/* Centered heading */}
-        <div className="text-center mb-[50px]">
+        <Reveal className="text-center mb-[50px]">
           <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
             Recent productions
           </h5>
@@ -51,13 +52,13 @@ export default function PortfolioSection() {
             A glimpse at our control rooms, camera setups, and live stages from
             recent broadcasts.
           </p>
-        </div>
+        </Reveal>
 
         {/* Uniform gallery grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioImages.map((src, i) => (
+            <Reveal key={src} delay={(i % 3) * 80}>
             <a
-              key={src}
               href={`/img/pics/${src}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -80,11 +81,12 @@ export default function PortfolioSection() {
                 </span>
               </span>
             </a>
+            </Reveal>
           ))}
         </div>
 
         {/* CTA — gradient-blend button */}
-        <div className="text-center mt-[50px]">
+        <Reveal className="text-center mt-[50px]">
           <a
             href="#"
             data-scroll
@@ -97,7 +99,7 @@ export default function PortfolioSection() {
             View all projects
             <i className="fa fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
-        </div>
+        </Reveal>
       </div>
 
       {/* Lightbox — centered on all screens */}

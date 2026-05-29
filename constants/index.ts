@@ -6,51 +6,62 @@ export const navLinks = [
   { href: "#contact", label: "Contact", active: false },
 ];
 
+// `image` paths are placeholders mapped to existing production stills —
+// swap them for service-specific photos when available.
 export const services = [
   {
     icon: "fa fa-heart",
     title: "Weddings",
     desc: "Multi-camera coverage and live streaming so distant family and friends never miss the day.",
+    image: "/img/services/wedding.jpg",
   },
   {
     icon: "fa fa-pagelines",
     title: "Funerals",
     desc: "Respectful, discreet live broadcasts that let loved ones grieve together from anywhere.",
+    image: "/img/services/Funerals.jpg",
   },
   {
     icon: "fa fa-laptop",
     title: "Webinars",
     desc: "Studio-grade audio and presenter switching for polished online sessions and panels.",
+    image: "/img/services/Webinars.jpg",
   },
   {
     icon: "fa fa-microphone",
     title: "Conferences",
     desc: "Hybrid event production with screen capture, lower-thirds, and presenter feeds.",
+    image: "/img/services/Conferences.jpg",
   },
   {
     icon: "fa fa-music",
     title: "Musical Concerts",
     desc: "Stage-grade multi-cam capture with audio board feeds for pristine live music streams.",
+    image: "/img/services/Musical-Concerts.jpg",
   },
   {
     icon: "fa fa-bullhorn",
     title: "Crusades",
     desc: "Reliable streaming to your church platforms so the message reaches every congregant.",
+    image: "/img/pics/prof-5.jpg",
   },
   {
     icon: "fa fa-flag-checkered",
     title: "Election Campaigns",
     desc: "Rally coverage, livestreams, and on-site media support for political events of any scale.",
+    image: "/img/services/Election-Campaigns.jpg",
   },
   {
     icon: "fa fa-graduation-cap",
     title: "Educational Programs",
     desc: "Lectures, graduations, and school events broadcast to parents, alumni, and partners.",
+    image: "/img/services/Educational-Programs.jpg",
   },
   {
     icon: "fa fa-trophy",
     title: "Award Ceremonies",
     desc: "Cinematic coverage with branded overlays for galas, ceremonies, and corporate awards.",
+    image: "/img/services/Award-Ceremonies.jpg",
   },
 ];
 
@@ -109,4 +120,6 @@ export const siteConfig = {
   tagline: "Professional Live Streaming & Event Production",
   description: "Professional multi-camera live production setup. Reliable broadcasts to every major platform — anywhere your audience is.",
   logo: "/img/logo.png",
+  // Set NEXT_PUBLIC_SITE_URL in your env to the real production domain.
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.liveconnect.com",
 };

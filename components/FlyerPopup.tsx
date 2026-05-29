@@ -22,6 +22,7 @@ export default function FlyerPopup({ showFlyer, closeFlyer }: FlyerPopupProps) {
           <p className="text-[#666] mt-[5px] mb-0">Professional Live Streaming Services</p>
         </div>
 
+        {/* eslint-disable-next-line @next/next/no-img-element -- popup image uses a custom DOM onError fallback that next/image can't replicate */}
         <img
           src="/img/pics/about.jpg"
           alt="Live Connect Flyer"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import TikTokIcon from "./TikTokIcon";
 import Reveal from "./Reveal";
 import { phones, footerLinks, socialLinks, contactInfo } from "@/constants";
@@ -12,13 +13,12 @@ export default function Footer() {
       <div className="container">
         <Reveal className="flex flex-wrap items-start -mx-[15px] pb-[50px] border-b border-white/[0.08]">
           <div className="w-full px-[15px] md:w-5/12 max-lg:mb-[30px]">
-            <img
+            <Image
               src="/img/logo.png"
               alt="Live Connect"
-              className="block max-h-[80px] mb-4"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
+              width={112}
+              height={90}
+              className="block mb-4 h-[80px] w-auto"
             />
             <p className="text-[#b8c2d4] text-[14px] max-w-[360px] mb-[18px]">
               Professional live streaming and event production. Reliable

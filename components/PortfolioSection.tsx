@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Reveal from "./Reveal";
 import { portfolioImages } from "@/constants";
 
@@ -66,13 +67,12 @@ export default function PortfolioSection() {
               }}
               className="group relative block overflow-hidden rounded-[14px] border border-white/[0.08] aspect-[4/3] shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] cursor-pointer"
             >
-              <img
+              <Image
                 src={`/img/pics/${src}`}
                 alt="Production still"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
+                fill
+                sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               {/* Hover overlay + magnifier */}
               <span className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(to_top,rgba(1,23,63,0.92),rgba(2,105,187,0.2))] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -110,6 +110,7 @@ export default function PortfolioSection() {
           role="dialog"
           aria-modal="true"
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- lightbox image has dynamic intrinsic size; next/image fill doesn't fit object-contain centering */}
           <img
             src={`/img/pics/${portfolioImages[activeIndex!]}`}
             alt="Production still"

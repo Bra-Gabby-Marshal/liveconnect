@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import TikTokIcon from "./TikTokIcon";
 import { navLinks, socialLinks } from "@/constants";
 
@@ -89,14 +90,13 @@ export default function Navbar() {
         <nav className="relative flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="inline-block" data-scroll>
-            <img
+            <Image
               src="/img/logo.png"
               alt="Live Connect"
               width={112}
               height={90}
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
+              priority
+              className="h-auto w-auto"
             />
           </a>
 

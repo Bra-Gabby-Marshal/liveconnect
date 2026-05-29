@@ -58,11 +58,27 @@ export default function Navbar() {
       active ? "text-royal" : "text-[#777] hover:text-royal",
     ].join(" ");
 
-  const downloadBtnClasses = [
-    "inline-block px-5 py-[10px] rounded-[30px] uppercase text-[10px] text-white font-semibold",
-    "leading-[25px] my-[14px] transition-all hover:rounded-none hover:shadow-none",
-    scrolled ? "bg-navy" : "bg-royal shadow-[0_10px_35px_2px_rgba(2,105,187,0.6)]",
-  ].join(" ");
+  // Catchy gradient CTA with a shine sweep + pulsing "live" dot.
+  const bookBtnClasses =
+    "group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-[10px] " +
+    "text-[10px] font-bold uppercase tracking-[1.5px] text-white leading-[25px] " +
+    "bg-[linear-gradient(135deg,#0269BB_0%,#22d3ee_100%)] bg-[length:200%_100%] bg-left " +
+    "shadow-[0_8px_24px_-6px_rgba(34,211,238,0.7)] " +
+    "transition-[background-position,transform,box-shadow] duration-500 ease-out " +
+    "hover:bg-right hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-4px_rgba(34,211,238,0.95)] " +
+    "before:content-[''] before:absolute before:inset-0 before:-translate-x-full " +
+    "before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent)] " +
+    "before:transition-transform before:duration-700 hover:before:translate-x-full";
+
+  const BookButtonInner = (
+    <span className="relative z-[1] flex items-center gap-2">
+      <span className="relative flex h-2 w-2">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-75 animate-ping"></span>
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-white"></span>
+      </span>
+      Book a Service
+    </span>
+  );
 
   return (
     <header id="header" className={headerClasses}>
@@ -103,8 +119,13 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <a data-scroll className={`ml-[10px] ${downloadBtnClasses}`} href="#contact">
-                  Book a Service
+                <a
+                  data-scroll
+                  href="#contact"
+                  className={`ml-[14px] ${bookBtnClasses}`}
+                  onClick={() => setActiveHref("#contact")}
+                >
+                  {BookButtonInner}
                 </a>
               </li>
             </ul>

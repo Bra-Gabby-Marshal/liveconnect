@@ -92,3 +92,13 @@
  ✓ Compiled / in 251ms (334 modules)
  GET / 200 in 790ms
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 667ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 332ms (248 modules)
+ ✓ Compiled in 342ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 390ms (248 modules)
+ ✓ Compiled in 454ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled / in 246ms (334 modules)
+ GET / 200 in 710ms

@@ -163,14 +163,17 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
-              <li>
+              <li className="px-[15px] py-[12px]">
                 <a
                   data-scroll
-                  className={mobileLinkClasses(false)}
                   href="#contact"
-                  onClick={() => setOpen(false)}
+                  className={bookBtnClasses}
+                  onClick={() => {
+                    setActiveHref("#contact");
+                    setOpen(false);
+                  }}
                 >
-                  Book a Service
+                  {BookButtonInner}
                 </a>
               </li>
             </ul>

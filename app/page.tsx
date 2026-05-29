@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
+import StatsSection from "@/components/StatsSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import PlatformsSection from "@/components/PlatformsSection";
 import ContactSection from "@/components/ContactSection";
@@ -90,6 +91,7 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <AboutSection />
+      <StatsSection />
       <PortfolioSection />
       <PlatformsSection />
       <ContactSection />

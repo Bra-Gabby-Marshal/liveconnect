@@ -3,6 +3,7 @@
 import { useState } from "react";
 import DefaultButton from "./DefaultButton";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 import { phones, contactInfo } from "@/constants";
 
 const whatsappNumber = contactInfo.whatsappNumber;
@@ -53,7 +54,8 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative z-[1] overflow-hidden bg-navy">
-      <div className="container">
+      <SectionDecor variant="contact" />
+      <div className="container relative z-[1]">
         <div className="flex flex-wrap items-center -mx-[15px] py-[120px] max-lg:pt-0 max-lg:pb-[100px] max-lg:text-center max-md:pb-[60px]">
           <div className="w-full px-[15px] md:w-full lg:w-5/12 max-lg:mb-[40px] max-lg:text-left">
             <Reveal>

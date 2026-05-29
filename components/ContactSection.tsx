@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DefaultButton from "./DefaultButton";
 import { phones, contactInfo } from "@/constants";
 
 const whatsappNumber = contactInfo.whatsappNumber;
@@ -46,31 +47,38 @@ export default function ContactSection() {
     }
   };
 
+  const fieldClasses =
+    "w-full border border-white/[0.12] bg-white/[0.04] rounded-[10px] px-4 py-[10px] h-12 mb-5 text-white outline-none focus:border-royal focus:bg-[rgba(2,105,187,0.08)]";
+
   return (
-    <section id="contact" className="contact-section bg-dark">
+    <section id="contact" className="relative z-[1] overflow-hidden bg-navy">
       <div className="container">
-        <div className="row contact-wrap">
-          <div className="col-lg-5 col-md-12 lc-contact-info-col">
-            <div className="contact-info mb-30">
-              <h5 className="lc-eyebrow">Get in touch</h5>
+        <div className="flex flex-wrap items-center -mx-[15px] py-[120px] max-lg:pt-0 max-lg:pb-[100px] max-lg:text-center max-md:pb-[60px]">
+          <div className="w-full px-[15px] md:w-full lg:w-5/12 max-lg:mb-[40px] max-lg:text-left">
+            <div className="mb-[30px]">
+              <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
+                Get in touch
+              </h5>
               <h2>Let&apos;s plan your live broadcast</h2>
-              <p className="lc-section-lead">
+              <p className="text-[#cfd6e1] max-w-[720px] mx-auto text-[15px]">
                 Tell us about your event and we&apos;ll send back a tailored
                 production plan, gear list, and quote.
               </p>
             </div>
-            <ul className="lc-contact-list">
+            <ul className="mt-[10px] [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:py-4 [&>li]:border-t [&>li]:border-white/[0.08] [&>li:last-child]:border-b">
               <li>
-                <span className="lc-contact-icon">
+                <span className="w-12 h-12 rounded-[12px] bg-[linear-gradient(135deg,#0269BB,#013079)] text-white inline-flex items-center justify-center shrink-0 [&>i]:text-[18px]">
                   <i className="fa fa-phone"></i>
                 </span>
                 <div>
-                  <span className="lc-contact-label">Call us</span>
+                  <span className="block uppercase tracking-[2px] text-[11px] text-royal font-bold mb-[6px]">
+                    Call us
+                  </span>
                   {phones.map((p) => (
                     <a
                       key={p.tel}
                       href={`tel:${p.tel}`}
-                      className="lc-contact-value"
+                      className="block text-white text-[18px] font-semibold leading-[1.5] hover:text-royal"
                     >
                       {p.display}
                     </a>
@@ -78,16 +86,18 @@ export default function ContactSection() {
                 </div>
               </li>
               <li>
-                <span className="lc-contact-icon">
+                <span className="w-12 h-12 rounded-[12px] bg-[linear-gradient(135deg,#0269BB,#013079)] text-white inline-flex items-center justify-center shrink-0 [&>i]:text-[18px]">
                   <i className="fa fa-whatsapp"></i>
                 </span>
                 <div>
-                  <span className="lc-contact-label">Chat on WhatsApp</span>
+                  <span className="block uppercase tracking-[2px] text-[11px] text-royal font-bold mb-[6px]">
+                    Chat on WhatsApp
+                  </span>
                   <a
                     href={`https://wa.me/${whatsappNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="lc-whatsapp-btn"
+                    className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-[30px] font-semibold text-[13px] mt-1 hover:bg-[#1eb858] hover:text-white"
                   >
                     <i className="fa fa-whatsapp"></i> Message us
                   </a>
@@ -95,42 +105,24 @@ export default function ContactSection() {
               </li>
             </ul>
           </div>
-          <div className="col-lg-7 col-md-12">
-            <div className="contact-form lc-contact-form">
-              <form
-                onSubmit={handleSubmit}
-                id="ajax_form"
-                className="form-horizontal"
-              >
-                <div className="form-group colum-row row">
-                  <div className="col-sm-6">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="form-control"
-                      placeholder="Your Name"
-                      required
-                    />
+          <div className="w-full px-[15px] md:w-full lg:w-7/12">
+            <div className="pr-[40px] max-lg:pr-0">
+              <form onSubmit={handleSubmit} id="ajax_form">
+                <div className="flex flex-wrap -mx-[15px]">
+                  <div className="w-full px-[15px] sm:w-1/2">
+                    <input type="text" id="name" name="name" className={fieldClasses} placeholder="Your Name" required />
                   </div>
-                  <div className="col-sm-6">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="form-control"
-                      placeholder="Email Address"
-                      required
-                    />
+                  <div className="w-full px-[15px] sm:w-1/2">
+                    <input type="email" id="email" name="email" className={fieldClasses} placeholder="Email Address" required />
                   </div>
                 </div>
-                <div className="form-group row">
-                  <div className="col-md-12">
+                <div className="flex flex-wrap -mx-[15px]">
+                  <div className="w-full px-[15px] md:w-full">
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className="form-control"
+                      className={fieldClasses}
                       placeholder="Phone Number"
                       autoComplete="tel"
                       inputMode="tel"
@@ -138,56 +130,46 @@ export default function ContactSection() {
                     />
                   </div>
                 </div>
-                <div className="form-group colum-row row">
-                  <div className="col-sm-6">
-                    <input
-                      type="text"
-                      id="event_type"
-                      name="event_type"
-                      className="form-control"
-                      placeholder="Event Type (e.g. Wedding)"
-                    />
+                <div className="flex flex-wrap -mx-[15px]">
+                  <div className="w-full px-[15px] sm:w-1/2">
+                    <input type="text" id="event_type" name="event_type" className={fieldClasses} placeholder="Event Type (e.g. Wedding)" />
                   </div>
-                  <div className="col-sm-6">
-                    <input
-                      type="date"
-                      id="event_date"
-                      name="event_date"
-                      className="form-control"
-                      placeholder="Event Date"
-                    />
+                  <div className="w-full px-[15px] sm:w-1/2">
+                    <input type="date" id="event_date" name="event_date" className={`${fieldClasses} [color-scheme:dark]`} placeholder="Event Date" />
                   </div>
                 </div>
-                <div className="form-group row">
-                  <div className="col-md-12">
+                <div className="flex flex-wrap -mx-[15px]">
+                  <div className="w-full px-[15px] md:w-full">
                     <textarea
                       id="message"
                       name="message"
                       cols={30}
                       rows={5}
-                      className="form-control message"
+                      className={`${fieldClasses} h-[140px] pt-[14px]`}
                       placeholder="Tell us about your event"
                       required
                     ></textarea>
                   </div>
                 </div>
-                <div className="form-group row">
-                  <div className="col-md-12">
-                    <button
-                      id="submit"
-                      className="default-btn submit-button"
+                <div className="flex flex-wrap -mx-[15px]">
+                  <div className="w-full px-[15px] md:w-full">
+                    <DefaultButton
                       type="submit"
                       disabled={isSubmitting}
+                      className="!rounded-[30px] !px-[32px]"
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
-                    </button>
+                    </DefaultButton>
                   </div>
                 </div>
                 {formMessage.text && (
-                  <div 
-                    id="form-messages" 
-                    className={`alert alert-${formMessage.type === "success" ? "success" : "danger"}`} 
+                  <div
                     role="alert"
+                    className={`mt-4 px-5 py-3 rounded border ${
+                      formMessage.type === "success"
+                        ? "text-[#155724] bg-[#d4edda] border-[#c3e6cb]"
+                        : "text-[#721c24] bg-[#f8d7da] border-[#f5c6cb]"
+                    }`}
                   >
                     {formMessage.text}
                   </div>

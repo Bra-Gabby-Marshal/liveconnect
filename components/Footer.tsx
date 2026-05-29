@@ -7,22 +7,23 @@ const whatsappNumber = contactInfo.whatsappNumber;
 
 export default function Footer() {
   return (
-    <footer className="lc-footer">
+    <footer className="bg-dark-blue text-[#cfd6e1] pt-[70px] pb-0">
       <div className="container">
-        <div className="row lc-footer-grid">
-          <div className="col-md-5 lc-footer-brand">
-            <img 
-              src="/img/logo.png" 
+        <div className="flex flex-wrap items-start -mx-[15px] pb-[50px] border-b border-white/[0.08]">
+          <div className="w-full px-[15px] md:w-5/12 max-lg:mb-[30px]">
+            <img
+              src="/img/logo.png"
               alt="Live Connect"
+              className="max-h-[44px] mb-4"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            <p>
+            <p className="text-[#b8c2d4] text-[14px] max-w-[360px] mb-[18px]">
               Professional live streaming and event production. Reliable
               broadcasts for the moments that matter.
             </p>
-            <ul className="social-link">
+            <ul className="[&>li]:inline-block [&>li]:mr-3 [&_a]:text-[#bbb] [&_a]:text-[18px] [&_a]:inline-flex [&_a]:items-center [&_a]:hover:text-white [&_svg]:w-[18px] [&_svg]:h-[18px]">
               {socialLinks.map((social) => (
                 <li key={social.label}>
                   <a
@@ -31,19 +32,15 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {social.isTikTok ? (
-                      <TikTokIcon />
-                    ) : (
-                      <i className={social.icon}></i>
-                    )}
+                    {social.isTikTok ? <TikTokIcon /> : <i className={social.icon}></i>}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="col-md-3 lc-footer-links">
-            <h4>Quick links</h4>
-            <ul>
+          <div className="w-full px-[15px] md:w-1/4 max-lg:mb-[30px]">
+            <h4 className="text-white uppercase text-[13px] tracking-[2px] mb-[18px]">Quick links</h4>
+            <ul className="[&>li]:py-[5px] [&>li]:text-[14px] [&_a]:text-[#cfd6e1] [&_a]:hover:text-white">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} data-scroll>
@@ -53,9 +50,9 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div className="col-md-4 lc-footer-contact">
-            <h4>Contact</h4>
-            <ul>
+          <div className="w-full px-[15px] md:w-1/3 [&_i]:text-royal [&_i]:w-[18px] [&_i]:mr-1">
+            <h4 className="text-white uppercase text-[13px] tracking-[2px] mb-[18px]">Contact</h4>
+            <ul className="[&>li]:py-[5px] [&>li]:text-[14px] [&_a]:text-[#cfd6e1] [&_a]:hover:text-white">
               {phones.map((p) => (
                 <li key={p.tel}>
                   <i className="fa fa-phone"></i>{" "}
@@ -75,10 +72,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="lc-footer-bottom">
-          <p>
+        <div className="py-[22px] text-center">
+          <p className="m-0 text-[12px] uppercase tracking-[2px] text-[#b8c2d4]">
             &copy; {new Date().getFullYear()} Live Connect. All rights
-            reserved. <span className="mock-hide">Designed by Sodey Haidor Gabriel</span>
+            reserved. <span className="max-md:hidden">Designed by Sodey Haidor Gabriel</span>
           </p>
         </div>
       </div>

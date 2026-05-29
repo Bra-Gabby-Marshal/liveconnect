@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Live Connect | Professional Live Streaming & Event Production",
@@ -28,18 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="no-js">
       <head>
+        {/* Icon fonts + venobox lightbox stay — they provide glyphs/behaviour,
+            not convertible CSS. Everything else is now handled by Tailwind. */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="/css/themify-icons.css" />
         <link rel="stylesheet" href="/css/elegant-font-icons.css" />
-        <link rel="stylesheet" href="/css/elegant-line-icons.css" />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/venobox/venobox.css" />
-        <link rel="stylesheet" href="/css/slicknav.min.css" />
-        <link rel="stylesheet" href="/css/animate.min.css" />
-        <link rel="stylesheet" href="/css/simpletextrotator.css" />
-        <link rel="stylesheet" href="/css/owl.carousel.css" />
-        <link rel="stylesheet" href="/css/main.css" />
-        <link rel="stylesheet" href="/css/responsive.css" />
         <Script
           src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"
           strategy="beforeInteractive"
@@ -51,7 +45,6 @@ export default function RootLayout({
         <Script src="/js/vendor/jquery-1.12.4.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/bootstrap.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/tether.min.js" strategy="afterInteractive" />
-        <Script src="/js/vendor/jquery.slicknav.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/owl.carousel.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/smooth-scroll.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/venobox.min.js" strategy="afterInteractive" />

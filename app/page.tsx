@@ -18,7 +18,20 @@ const whatsappNumber = contactInfo.whatsappNumber;
 
 export default function Home() {
   const [showFlyer, setShowFlyer] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Preloader: hide once the window has finished loading
+  // (replaces the old jQuery `body.loaded` toggle).
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      setLoaded(true);
+      return;
+    }
+    const onLoad = () => setLoaded(true);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
 
   // Handle smooth scrolling
   useEffect(() => {
@@ -61,8 +74,12 @@ export default function Home() {
         <source src="/audio/jingle.mpeg" type="audio/mpeg" />
       </audio>
       
-      <div className="site-preloader-wrap">
-        <div className="spinner"></div>
+      <div
+        className={`fixed inset-0 z-[9999] bg-navy transition-[opacity,visibility] duration-500 ${
+          loaded ? "opacity-0 invisible" : "opacity-100 visible"
+        }`}
+      >
+        <div className="absolute left-1/2 top-1/2 -ml-5 -mt-5 w-10 h-10 rounded-full bg-white animate-sk-scaleout"></div>
       </div>
 
       <Navbar />

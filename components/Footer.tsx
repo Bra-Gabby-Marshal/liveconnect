@@ -14,7 +14,7 @@ export default function Footer() {
             <img
               src="/img/logo.png"
               alt="Live Connect"
-              className="max-h-[44px] mb-4"
+              className="max-h-[80px] mb-4"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}

@@ -90,6 +90,14 @@ export const footerLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
+// NOTE: Placeholder figures — replace with Live Connect's real numbers before launch.
+export const stats = [
+  { value: "150+", label: "Events Streamed" },
+  { value: "50K+", label: "Live Viewers Reached" },
+  { value: "8+", label: "Platforms Supported" },
+  { value: "100%", label: "Reliable Broadcasts" },
+];
+
 export const contactInfo = {
   whatsappNumber: "233551380990",
   email: "info@liveconnect.com",

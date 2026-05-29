@@ -31,3 +31,17 @@
  ✓ Compiled in 701ms (249 modules)
  ✓ Compiled / in 306ms (335 modules)
  GET /?b=1780069808 200 in 839ms
+ ✓ Compiled in 1727ms (249 modules)
+ ✓ Compiled in 357ms (249 modules)
+ ✓ Compiled in 592ms (249 modules)
+ ✓ Compiled in 287ms (249 modules)
+ ✓ Compiled in 509ms (249 modules)
+ ✓ Compiled in 447ms (249 modules)
+ ✓ Compiled in 393ms (249 modules)
+ ✓ Compiled in 994ms (249 modules)
+ ✓ Compiled in 1120ms (249 modules)
+ ✓ Compiled in 640ms (249 modules)
+ ✓ Compiled in 665ms (250 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 760ms (562 modules)
+ GET /?b=1780071907 200 in 1686ms

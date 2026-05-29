@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import {
+  renderEnquiryEmail,
+  renderConfirmationEmail,
+} from "@/lib/emailTemplates";
 
 export const runtime = "nodejs";
 
@@ -93,24 +97,18 @@ export async function POST(request: Request) {
         : undefined,
   });
 
-  const subject = eventType
-    ? `New booking enquiry: ${eventType} — ${name}`
-    : `New booking enquiry from ${name}`;
-  const text =
-    `Name: ${name}\n` +
-    `Email: ${email}\n` +
-    `Phone: ${phone}\n` +
-    `Event type: ${eventType || "(not provided)"}\n` +
-    `Event date: ${eventDate || "(not provided)"}\n\n` +
-    `Message:\n${message}\n`;
+  const enquiry = { name, email, phone, eventType, eventDate, message };
+  const year = new Date().getFullYear();
+  const studioEmail = renderEnquiryEmail(enquiry, year);
 
   try {
     await transporter.sendMail({
       from: MAIL_FROM ?? `${name} <${email}>`,
       to: MAIL_TO,
       replyTo: email,
-      subject,
-      text,
+      subject: studioEmail.subject,
+      text: studioEmail.text,
+      html: studioEmail.html,
     });
   } catch {
     return new NextResponse(
@@ -122,22 +120,14 @@ export async function POST(request: Request) {
   // Send a confirmation copy to the person who submitted the form.
   // A failure here must not fail the request — the enquiry was already delivered.
   try {
-    const confirmationText =
-      `Hi ${name},\n\n` +
-      `Thanks for reaching out to Live Connect — we've received your enquiry ` +
-      `and will get back to you shortly. Here's a copy of what you sent:\n\n` +
-      `Phone: ${phone}\n` +
-      `Event type: ${eventType || "(not provided)"}\n` +
-      `Event date: ${eventDate || "(not provided)"}\n\n` +
-      `Message:\n${message}\n\n` +
-      `— The Live Connect team`;
-
+    const confirmation = renderConfirmationEmail(enquiry, year);
     await transporter.sendMail({
       from: MAIL_FROM ?? MAIL_TO,
       to: email,
       replyTo: MAIL_TO,
-      subject: "We received your enquiry — Live Connect",
-      text: confirmationText,
+      subject: confirmation.subject,
+      text: confirmation.text,
+      html: confirmation.html,
     });
   } catch (err) {
     console.error("Confirmation email to sender failed:", err);

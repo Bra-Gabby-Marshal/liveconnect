@@ -15,14 +15,8 @@
       speed: 2000
     });
 
-/*=========================================================================
-        Active venobox
-=========================================================================*/
-	$('.img-popup').venobox({
-		numeratio: true,
-		infinigall: true
-	});
-
+/* The portfolio lightbox is now a React component (components/PortfolioSection.tsx),
+   so the venobox jQuery plugin is no longer initialized here. */
 
 /* Smooth scrolling for [data-scroll] links is handled in React (app/page.tsx),
    so the cferdinandi smooth-scroll plugin is intentionally not initialized here

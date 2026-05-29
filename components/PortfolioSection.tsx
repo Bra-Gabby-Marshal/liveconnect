@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 import { portfolioImages } from "@/constants";
 
 export default function PortfolioSection() {
@@ -40,9 +41,10 @@ export default function PortfolioSection() {
   return (
     <section
       id="works"
-      className="bg-[linear-gradient(180deg,#013079_0%,#01173F_100%)] py-[100px] max-md:py-[60px]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#013079_0%,#01173F_100%)] py-[100px] max-md:py-[60px]"
     >
-      <div className="container">
+      <SectionDecor variant="portfolio" />
+      <div className="container relative z-[1]">
         {/* Centered heading */}
         <Reveal className="text-center mb-[50px]">
           <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">

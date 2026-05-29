@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 import { services } from "@/constants";
 
 export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative bg-[linear-gradient(180deg,#01173F_0%,#013079_100%)] py-[100px] max-md:py-[60px]"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#01173F_0%,#013079_100%)] py-[100px] max-md:py-[60px]"
     >
-      <div className="container">
+      <SectionDecor variant="services" />
+      <div className="container relative z-[1]">
         <Reveal className="text-center mb-[50px]">
           <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">
             What we cover

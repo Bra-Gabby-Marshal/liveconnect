@@ -74,6 +74,19 @@ const config: Config = {
               "0 4px 24px rgba(0,0,0,0.35), 0 0 28px rgba(34,211,238,0.45)",
           },
         },
+        // Slow ambient drift for decorative background "artifacts".
+        "lc-float-a": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(26px, -32px) scale(1.06)" },
+        },
+        "lc-float-b": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(-30px, 28px) scale(1.05)" },
+        },
+        "lc-spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "sk-scaleout": "sk-scaleout 1s infinite ease-in-out",
@@ -82,6 +95,9 @@ const config: Config = {
         "slide-in": "slide-in 0.3s ease-out",
         "fade-in-up": "fade-in-up 0.3s ease-out",
         "hero-pulse": "hero-pulse 2.8s ease-in-out infinite",
+        "lc-float-a": "lc-float-a 18s ease-in-out infinite",
+        "lc-float-b": "lc-float-b 22s ease-in-out infinite",
+        "lc-spin-slow": "lc-spin-slow 70s linear infinite",
       },
     },
   },

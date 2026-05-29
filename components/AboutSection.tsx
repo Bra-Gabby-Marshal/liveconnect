@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 
 const features = [
   "Professional broadcast equipment & redundant connectivity",
@@ -12,8 +13,9 @@ const features = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-navy py-[100px] max-md:py-[60px]">
-      <div className="container">
+    <section id="about" className="relative overflow-hidden bg-navy py-[100px] max-md:py-[60px]">
+      <SectionDecor variant="about" />
+      <div className="container relative z-[1]">
         <div className="grid lg:grid-cols-2 gap-[60px] max-lg:gap-[40px] items-center">
           {/* Text column */}
           <Reveal>

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import TikTokIcon from "./TikTokIcon";
 import Reveal from "./Reveal";
+import SectionDecor from "./SectionDecor";
 import { platforms } from "@/constants";
 
 // Brand glyphs as SVGs (24x24, fill=currentColor) so every platform icon fills
@@ -27,8 +28,9 @@ const icons: Record<string, ReactNode> = {
 
 export default function PlatformsSection() {
   return (
-    <section className="relative bg-dark-blue py-[100px] max-md:py-[60px]">
-      <div className="container">
+    <section className="relative overflow-hidden bg-dark-blue py-[100px] max-md:py-[60px]">
+      <SectionDecor variant="platforms" />
+      <div className="container relative z-[1]">
         <div className="text-center">
           <Reveal>
             <h5 className="text-royal uppercase tracking-[3px] text-[12px] font-bold mb-[12px] inline-block">

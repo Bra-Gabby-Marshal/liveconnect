@@ -66,3 +66,29 @@
  ✓ Compiled in 834ms (248 modules)
  ✓ Compiled / in 147ms (334 modules)
  GET / 200 in 405ms
+ ✓ Compiled in 1005ms (248 modules)
+ ✓ Compiled / in 192ms (334 modules)
+ GET / 200 in 576ms
+ ✓ Compiled in 715ms (248 modules)
+ ✓ Compiled in 396ms (248 modules)
+ ✓ Compiled in 285ms (248 modules)
+ ✓ Compiled in 289ms (248 modules)
+ ✓ Compiled in 309ms (248 modules)
+ ✓ Compiled / in 337ms (334 modules)
+ GET / 200 in 820ms
+ ✓ Compiled in 1474ms (582 modules)
+ ✓ Compiled in 732ms (248 modules)
+ ✓ Compiled in 447ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\sodey\Downloads\liveConnect\live_connect_website\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\sodey\Downloads\liveConnect\live_connect_website\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 380ms (248 modules)
+ ✓ Compiled in 271ms (248 modules)
+ ✓ Compiled in 184ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 943ms (248 modules)
+ ✓ Compiled in 694ms (248 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type
+ ✓ Compiled in 302ms (248 modules)
+ ✓ Compiled in 475ms (248 modules)
+ ✓ Compiled / in 251ms (334 modules)
+ GET / 200 in 790ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid block type

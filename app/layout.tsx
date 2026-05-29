@@ -29,11 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="no-js">
       <head>
-        {/* Icon fonts + venobox lightbox stay — they provide glyphs/behaviour,
-            not convertible CSS. Everything else is now handled by Tailwind. */}
+        {/* Icon fonts stay — they provide the glyphs used by <i> elements.
+            Everything else is now handled by Tailwind. */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/css/elegant-font-icons.css" />
-        <link rel="stylesheet" href="/css/venobox/venobox.css" />
         <Script
           src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"
           strategy="beforeInteractive"
@@ -46,7 +45,6 @@ export default function RootLayout({
         <Script src="/js/vendor/bootstrap.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/tether.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/owl.carousel.min.js" strategy="afterInteractive" />
-        <Script src="/js/vendor/venobox.min.js" strategy="afterInteractive" />
         <Script src="/js/vendor/jquery.simple-text-rotator.js" strategy="afterInteractive" />
         <Script src="/js/vendor/wow.min.js" strategy="afterInteractive" />
         {googleMapsSrc && (

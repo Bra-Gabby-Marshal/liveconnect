@@ -67,11 +67,11 @@ export default function Navbar() {
     "group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-[10px] " +
     "text-[10px] font-bold uppercase tracking-[1.5px] text-white leading-[25px] " +
     "bg-[linear-gradient(135deg,#0269BB_0%,#22d3ee_100%)] bg-[length:200%_100%] bg-left " +
-    "shadow-[0_8px_24px_-6px_rgba(34,211,238,0.7)] " +
+    "shadow-[0_8px_24px_-6px_rgba(34,211,238,0.4)] " +
     "transition-[background-position,transform,box-shadow] duration-500 ease-out " +
-    "hover:bg-right hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-4px_rgba(34,211,238,0.95)] " +
+    "hover:bg-right hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-4px_rgba(34,211,238,0.55)] " +
     "before:content-[''] before:absolute before:inset-0 before:-translate-x-full " +
-    "before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent)] " +
+    "before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.28),transparent)] " +
     "before:transition-transform before:duration-700 hover:before:translate-x-full";
 
   const BookButtonInner = (

@@ -94,9 +94,9 @@ export default function PortfolioSection() {
             data-scroll
             className="group inline-flex items-center gap-2 rounded-full px-9 py-[14px] text-[11px] font-bold uppercase tracking-[2px] text-white
                        bg-[linear-gradient(135deg,#013079_0%,#0269BB_45%,#22d3ee_100%)] bg-[length:200%_200%] bg-left
-                       shadow-[0_12px_30px_-8px_rgba(2,105,187,0.6)]
+                       shadow-[0_12px_30px_-8px_rgba(2,105,187,0.38)]
                        transition-[background-position,box-shadow,transform] duration-500 ease-out
-                       hover:bg-right hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-10px_rgba(34,211,238,0.7)]"
+                       hover:bg-right hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-10px_rgba(34,211,238,0.48)]"
           >
             View all projects
             <i className="fa fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>

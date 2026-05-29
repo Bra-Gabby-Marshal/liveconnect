@@ -98,7 +98,7 @@ export default function ContactSection() {
                     href={`https://wa.me/${whatsappNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-[30px] font-semibold text-[13px] mt-1 hover:bg-[#1eb858] hover:text-white"
+                    className="inline-flex items-center gap-2 bg-[#1DA851] text-white px-4 py-2 rounded-[30px] font-semibold text-[13px] mt-1 hover:bg-[#17853f] hover:text-white"
                   >
                     <i className="fa fa-whatsapp"></i> Message us
                   </a>

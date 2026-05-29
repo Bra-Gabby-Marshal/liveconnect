@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { navLinks } from "@/constants";
+import TikTokIcon from "./TikTokIcon";
+import { navLinks, socialLinks } from "@/constants";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -54,8 +55,10 @@ export default function Navbar() {
 
   const mobileLinkClasses = (active: boolean) =>
     [
-      "block px-[15px] py-[10px] uppercase text-[12px] font-semibold tracking-[1px] transition-colors",
-      active ? "text-royal" : "text-[#777] hover:text-royal",
+      "flex items-center gap-3 px-5 py-[14px] uppercase text-[13px] font-semibold tracking-[1px] border-l-2 transition-all duration-200",
+      active
+        ? "text-white border-[#22d3ee] bg-white/[0.06]"
+        : "text-[#b9c4d6] border-transparent hover:text-white hover:border-white/30 hover:bg-white/[0.04]",
     ].join(" ");
 
   // Catchy gradient CTA with a shine sweep + pulsing "live" dot.
@@ -131,43 +134,59 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger (morphs into an X when open) */}
           <button
             type="button"
-            className="md:hidden flex flex-col gap-1 p-2"
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-[6px]"
             aria-label="Toggle menu"
+            aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
-            <span className={`w-[18px] h-0.5 transition-colors ${scrolled ? "bg-[#777]" : "bg-white"}`} />
-            <span className={`w-[18px] h-0.5 transition-colors ${scrolled ? "bg-[#777]" : "bg-white"}`} />
-            <span className={`w-[18px] h-0.5 transition-colors ${scrolled ? "bg-[#777]" : "bg-white"}`} />
+            <span
+              className={`block h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${
+                open ? "translate-y-[8px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${
+                open ? "-translate-y-[8px] -rotate-45" : ""
+              }`}
+            />
           </button>
         </nav>
 
-        {/* Mobile menu panel */}
+        {/* Mobile menu panel — dark glass, slides in */}
         {open && (
-          <div className="md:hidden absolute left-0 right-0 top-full bg-white shadow-lg">
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    data-scroll
-                    className={mobileLinkClasses(activeHref === link.href)}
-                    href={link.href}
-                    onClick={() => {
-                      setActiveHref(link.href);
-                      setOpen(false);
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li className="px-[15px] py-[12px]">
+          <div className="md:hidden absolute left-0 right-0 top-full px-3">
+            <div className="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-dark-blue/95 backdrop-blur-md shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] animate-slide-in">
+              <ul className="py-2">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      data-scroll
+                      className={mobileLinkClasses(activeHref === link.href)}
+                      href={link.href}
+                      onClick={() => {
+                        setActiveHref(link.href);
+                        setOpen(false);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="px-5 pb-4 pt-1">
                 <a
                   data-scroll
                   href="#contact"
-                  className={bookBtnClasses}
+                  className={`${bookBtnClasses} w-full justify-center`}
                   onClick={() => {
                     setActiveHref("#contact");
                     setOpen(false);
@@ -175,8 +194,24 @@ export default function Navbar() {
                 >
                   {BookButtonInner}
                 </a>
-              </li>
-            </ul>
+              </div>
+
+              {/* Social row */}
+              <div className="flex items-center justify-center gap-3 border-t border-white/10 py-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/15 bg-white/5 text-[#cfe0f5] text-[15px] transition-colors hover:text-white hover:border-white/40 hover:bg-white/10 [&_svg]:w-[15px] [&_svg]:h-[15px]"
+                  >
+                    {social.isTikTok ? <TikTokIcon /> : <i className={social.icon}></i>}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>

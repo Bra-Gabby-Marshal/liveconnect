@@ -14,7 +14,7 @@ export default function Footer() {
             <img
               src="/img/logo.png"
               alt="Live Connect"
-              className="max-h-[80px] mb-4"
+              className="block max-h-[80px] mb-4"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="py-[22px] text-center">
           <p className="m-0 text-[12px] uppercase tracking-[2px] text-[#b8c2d4]">
             &copy; {new Date().getFullYear()} Live Connect. All rights
-            reserved. <span className="max-md:hidden text-[10px] tracking-[1px] opacity-70">Designed by Sodey Haidor Gabriel</span>
+            reserved. <span className="block md:inline mt-1 md:mt-0 text-[10px] tracking-[1px] opacity-70">Designed by Sodey Haidor Gabriel</span>
           </p>
         </div>
       </div>

@@ -14,7 +14,8 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setFormMessage({ type: "", text: "" });
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -28,12 +29,17 @@ export default function ContactSection() {
 
       if (response.ok) {
         setFormMessage({ type: "success", text: "Message sent successfully! We'll get back to you soon." });
-        e.currentTarget.reset();
+        form.reset();
       } else {
-        throw new Error('Failed to send message');
+        const serverText = await response.text();
+        throw new Error(serverText || "Failed to send message");
       }
     } catch (error) {
-      setFormMessage({ type: "error", text: "Failed to send message. Please try again or call us directly." });
+      const detail = error instanceof Error ? error.message : "";
+      setFormMessage({
+        type: "error",
+        text: detail || "Failed to send message. Please try again or call us directly.",
+      });
       console.error("Form submission error:", error);
     } finally {
       setIsSubmitting(false);
@@ -95,7 +101,6 @@ export default function ContactSection() {
                 onSubmit={handleSubmit}
                 id="ajax_form"
                 className="form-horizontal"
-                noValidate
               >
                 <div className="form-group colum-row row">
                   <div className="col-sm-6">

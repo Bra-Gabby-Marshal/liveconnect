@@ -119,6 +119,30 @@ export async function POST(request: Request) {
     );
   }
 
+  // Send a confirmation copy to the person who submitted the form.
+  // A failure here must not fail the request — the enquiry was already delivered.
+  try {
+    const confirmationText =
+      `Hi ${name},\n\n` +
+      `Thanks for reaching out to Live Connect — we've received your enquiry ` +
+      `and will get back to you shortly. Here's a copy of what you sent:\n\n` +
+      `Phone: ${phone}\n` +
+      `Event type: ${eventType || "(not provided)"}\n` +
+      `Event date: ${eventDate || "(not provided)"}\n\n` +
+      `Message:\n${message}\n\n` +
+      `— The Live Connect team`;
+
+    await transporter.sendMail({
+      from: MAIL_FROM ?? MAIL_TO,
+      to: email,
+      replyTo: MAIL_TO,
+      subject: "We received your enquiry — Live Connect",
+      text: confirmationText,
+    });
+  } catch (err) {
+    console.error("Confirmation email to sender failed:", err);
+  }
+
   return new NextResponse("Thank You! Your message has been sent.", {
     status: 200,
   });

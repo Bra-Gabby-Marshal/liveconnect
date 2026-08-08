@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import TikTokIcon from "./TikTokIcon";
 import Reveal from "./Reveal";
 import { socialLinks, siteConfig } from "@/constants";
@@ -7,12 +8,47 @@ import { socialLinks, siteConfig } from "@/constants";
 export default function HeroSection() {
   // Filter social links for hero section (first 4)
   const heroSocialLinks = socialLinks.slice(0, 4);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // React omits the `muted` attribute from server-rendered HTML, which makes iOS
+  // Safari refuse to autoplay. Set it on the element and kick off playback here.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      return;
+    }
+    video.muted = true;
+    video.play().catch(() => {
+      /* autoplay blocked — the poster image stays visible */
+    });
+  }, []);
 
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-navy flex items-center min-h-screen pt-[130px] pb-[110px] bg-[url('/img/pics/hero-background.jpeg')] bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden bg-navy flex items-center min-h-screen pt-[130px] pb-[110px]"
     >
+      {/* Background video (poster image doubles as the reduced-motion / no-video fallback) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 bg-[url('/img/pics/hero-background.jpeg')] bg-cover bg-center bg-no-repeat"
+      >
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover object-center motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/img/pics/hero-background.jpeg"
+        >
+          <source src="/liveConnectStudio.mp4" type="video/mp4" />
+        </video>
+      </div>
+
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-[1] bg-[linear-gradient(135deg,rgba(1,23,63,0.92)_0%,rgba(1,48,121,0.82)_45%,rgba(2,105,187,0.55)_100%)]" />
       <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(circle_at_80%_20%,rgba(2,105,187,0.35),transparent_55%),radial-gradient(circle_at_15%_80%,rgba(1,48,121,0.45),transparent_55%)]" />

@@ -18,9 +18,14 @@ import ScrollToTop from "@/components/ScrollToTop";
 const whatsappNumber = contactInfo.whatsappNumber;
 
 export default function Home() {
-  const [showFlyer, setShowFlyer] = useState(true);
+  const [showFlyer, setShowFlyer] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Direct booking links should reach the form without the welcome popup.
+  useEffect(() => {
+    setShowFlyer(window.location.hash !== "#contact");
+  }, []);
 
   // Preloader: hide once the window has finished loading
   // (replaces the old jQuery `body.loaded` toggle).
@@ -41,9 +46,9 @@ export default function Home() {
       const link = target.closest('[data-scroll]');
       if (!link) return;
       
-      e.preventDefault();
       const hash = link.getAttribute('href');
-      if (!hash || hash === '#') return;
+      if (!hash?.startsWith('#') || hash === '#') return;
+      e.preventDefault();
       
       const element = document.querySelector(hash);
       if (element) {

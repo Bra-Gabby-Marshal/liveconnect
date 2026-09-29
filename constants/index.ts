@@ -3,6 +3,7 @@ export const navLinks = [
   { href: "#services", label: "Services", active: false },
   { href: "#about", label: "About", active: false },
   { href: "#works", label: "Portfolio", active: false },
+  { href: "/gallery", label: "Gallery", active: false },
   { href: "#contact", label: "Contact", active: false },
 ];
 
@@ -74,6 +75,15 @@ export const portfolioImages = [
   "prof-6.jpg",
 ];
 
+export const galleryImages = [
+  "gallery-1.jpeg",
+  "gallery-2.jpeg",
+  "gallery-3.jpeg",
+  "gallery-4.jpeg",
+  "gallery-5.jpeg",
+  "gallery-6.jpeg",
+];
+
 export const platforms = [
   { icon: "fa fa-youtube-play", label: "YouTube", url: "https://youtube.com" },
   { icon: "fa fa-facebook", label: "Facebook", url: "https://facebook.com" },
@@ -98,6 +108,7 @@ export const footerLinks = [
   { href: "#services", label: "Services" },
   { href: "#about", label: "About" },
   { href: "#works", label: "Portfolio" },
+  { href: "/gallery", label: "Gallery" },
   { href: "#contact", label: "Contact" },
 ];
 

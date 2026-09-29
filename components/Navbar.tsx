@@ -2,13 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import TikTokIcon from "./TikTokIcon";
 import { navLinks, socialLinks } from "@/constants";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const resolveHref = (href: string) => !isHome && href.startsWith("#") ? `/${href}` : href;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeHref, setActiveHref] = useState(navLinks[0]?.href ?? "#home");
+  const [activeSection, setActiveHref] = useState(navLinks[0]?.href ?? "#home");
+  const activeHref = isHome ? activeSection : pathname;
 
   // Sticky header: ported from the old jQuery main.js (triggerPoint = 80px).
   useEffect(() => {
@@ -21,7 +26,9 @@ export default function Navbar() {
   // Scroll-spy: highlight the link for whichever section crosses the
   // viewport's upper-middle band (replaces the old Bootstrap data-spy).
   useEffect(() => {
+    if (!isHome) return;
     const sections = navLinks
+      .filter((l) => l.href.startsWith("#"))
       .map((l) => document.getElementById(l.href.replace("#", "")))
       .filter((el): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
@@ -36,7 +43,7 @@ export default function Navbar() {
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
 
   const headerClasses = [
     "fixed top-0 left-0 w-full z-[999] transition-all duration-300",
@@ -89,7 +96,7 @@ export default function Navbar() {
       <div className="container">
         <nav className="relative flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="inline-block" data-scroll>
+          <a href={resolveHref("#home")} className="inline-block" data-scroll={isHome || undefined}>
             <Image
               src="/img/logo.png"
               alt="Live Connect"
@@ -106,9 +113,9 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    data-scroll
+                    data-scroll={isHome && link.href.startsWith("#") || undefined}
                     className={navLinkClasses(activeHref === link.href)}
-                    href={link.href}
+                    href={resolveHref(link.href)}
                     onClick={() => {
                       setActiveHref(link.href);
                       setOpen(false);
@@ -124,7 +131,7 @@ export default function Navbar() {
               <li>
                 <a
                   data-scroll
-                  href="#contact"
+                  href={resolveHref("#contact")}
                   className={`ml-[14px] ${bookBtnClasses}`}
                   onClick={() => setActiveHref("#contact")}
                 >
@@ -168,9 +175,9 @@ export default function Navbar() {
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <a
-                      data-scroll
+                      data-scroll={isHome && link.href.startsWith("#") || undefined}
                       className={mobileLinkClasses(activeHref === link.href)}
-                      href={link.href}
+                      href={resolveHref(link.href)}
                       onClick={() => {
                         setActiveHref(link.href);
                         setOpen(false);
@@ -185,7 +192,7 @@ export default function Navbar() {
               <div className="px-5 pb-4 pt-1">
                 <a
                   data-scroll
-                  href="#contact"
+                  href={resolveHref("#contact")}
                   className={`${bookBtnClasses} w-full justify-center`}
                   onClick={() => {
                     setActiveHref("#contact");

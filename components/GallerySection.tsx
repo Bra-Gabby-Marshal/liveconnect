@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import SectionDecor from "./SectionDecor";
-import { portfolioImages } from "@/constants";
+import { galleryImages } from "@/constants";
 
-export default function PortfolioSection({ gallery = false }: { gallery?: boolean }) {
+export default function GallerySection({ gallery = false }: { gallery?: boolean }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const isOpen = activeIndex !== null;
-  const count = portfolioImages.length;
+  const count = galleryImages.length;
 
   const close = useCallback(() => setActiveIndex(null), []);
   const prev = useCallback(
@@ -59,10 +59,10 @@ export default function PortfolioSection({ gallery = false }: { gallery?: boolea
 
         {/* Uniform gallery grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioImages.map((src, i) => (
-            <Reveal key={src} delay={(i % 3) * 80}>
+          {galleryImages.map((src, i) => (
             <a
-              href={`/img/pics/${src}`}
+              key={src}
+              href={`/img/gallery/${src}`}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveIndex(i);
@@ -70,7 +70,7 @@ export default function PortfolioSection({ gallery = false }: { gallery?: boolea
               className="group relative block overflow-hidden rounded-[14px] border border-white/[0.08] aspect-[4/3] shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] cursor-pointer"
             >
               <Image
-                src={`/img/pics/${src}`}
+                src={`/img/gallery/${src}`}
                 alt="Production still"
                 fill
                 sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
@@ -83,7 +83,6 @@ export default function PortfolioSection({ gallery = false }: { gallery?: boolea
                 </span>
               </span>
             </a>
-            </Reveal>
           ))}
         </div>
 
@@ -113,7 +112,7 @@ export default function PortfolioSection({ gallery = false }: { gallery?: boolea
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- lightbox image has dynamic intrinsic size; next/image fill doesn't fit object-contain centering */}
           <img
-            src={`/img/pics/${portfolioImages[activeIndex!]}`}
+            src={`/img/gallery/${galleryImages[activeIndex!]}`}
             alt="Production still"
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-[8px] shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
             onClick={(e) => e.stopPropagation()}

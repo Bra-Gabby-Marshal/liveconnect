@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import TikTokIcon from "./TikTokIcon";
 import Reveal from "./Reveal";
 import SectionDecor from "./SectionDecor";
@@ -9,6 +10,7 @@ import { phones, footerLinks, socialLinks, contactInfo } from "@/constants";
 const whatsappNumber = contactInfo.whatsappNumber;
 
 export default function Footer() {
+  const isHome = usePathname() === "/";
   return (
     <footer className="relative overflow-hidden bg-dark-blue text-[#cfd6e1] pt-[70px] pb-0">
       <SectionDecor variant="footer" />
@@ -46,7 +48,7 @@ export default function Footer() {
             <ul className="[&>li]:py-[5px] [&>li]:text-[14px] [&_a]:text-[#cfd6e1] [&_a]:hover:text-white">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} data-scroll>
+                  <a href={!isHome && link.href.startsWith("#") ? `/${link.href}` : link.href} data-scroll={isHome && link.href.startsWith("#") || undefined}>
                     {link.label}
                   </a>
                 </li>
